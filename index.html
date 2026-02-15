@@ -1,206 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your App Name</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERRYS | Redefining Elegance</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
-    /* RESET */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background: radial-gradient(circle at top, #0f2027, #000);
-      color: white;
-      overflow-x: hidden;
-    }
+        :root {
+            --bg-color: #0a0a0a;
+            --text-primary: #f0f0f0;
+            --text-secondary: #888888;
+            --accent-color: #d4af37; /* Gold for luxury */
+        }
 
-    /* MOUSE GLOW */
-    .cursor-glow {
-      position: fixed;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(0,255,255,0.15), transparent 60%);
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 0;
-      transition: transform 0.05s linear;
-    }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden; /* Prevent scrolling for the full-screen experience */
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
 
-    /* HERO */
-    .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
+        /* --- BACKGROUND PARALLAX ELEMENTS --- */
+        .decoration-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none; /* Mouse passes through */
+        }
 
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      opacity: 0;
-      transform: translateY(40px);
-      animation: fadeUp 1.2s ease forwards;
-    }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            transition: transform 0.1s linear; /* Smooth mouse follow */
+        }
 
-    .hero p {
-      margin-top: 12px;
-      font-size: 1.1rem;
-      opacity: 0.7;
-      animation: fadeUp 1.2s ease forwards;
-      animation-delay: 0.2s;
-    }
+        .orb-1 {
+            top: 20%;
+            left: 20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #2a2a2a, transparent);
+        }
 
-    .hero button {
-      margin-top: 30px;
-      padding: 14px 32px;
-      border-radius: 30px;
-      border: none;
-      background: linear-gradient(135deg, #00f2ff, #4facfe);
-      color: black;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: fadeUp 1.2s ease forwards;
-      animation-delay: 0.4s;
-    }
+        .orb-2 {
+            bottom: 10%;
+            right: 15%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #1a1a1a, transparent);
+        }
 
-    .hero button:hover {
-      transform: scale(1.08);
-      box-shadow: 0 20px 60px rgba(0,255,255,0.4);
-    }
+        .orb-3 {
+            top: 50%;
+            left: 50%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--accent-color), transparent);
+            opacity: 0.15;
+            transform: translate(-50%, -50%);
+        }
 
-    /* SECTIONS */
-    section {
-      min-height: 80vh;
-      padding: 120px 10%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+        /* --- MAIN CONTAINER --- */
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+            animation: fadeInUp 1.5s ease-out forwards;
+        }
 
-    .card {
-      max-width: 700px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 50px;
-      backdrop-filter: blur(12px);
-      opacity: 0;
-      transform: translateY(60px);
-      transition: all 1s ease;
-    }
+        /* --- TYPOGRAPHY --- */
+        .brand-name {
+            font-family: 'Cormorant Garmond', serif;
+            font-size: 6rem;
+            font-weight: 300;
+            letter-spacing: 0.5rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    .card.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.2rem;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
 
-    .card h2 {
-      font-size: 2.2rem;
-      margin-bottom: 16px;
-    }
+        /* --- COMING SOON BADGE --- */
+        .badge {
+            display: inline-block;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.2rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
 
-    .card p {
-      opacity: 0.8;
-      line-height: 1.7;
-      font-size: 1.05rem;
-    }
+        /* --- NEWSLETTER FORM --- */
+        .notify-form {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-top: 2rem;
+            position: relative;
+        }
 
-    footer {
-      text-align: center;
-      padding: 40px;
-      opacity: 0.4;
-      font-size: 0.9rem;
-    }
+        input[type="email"] {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--text-secondary);
+            color: white;
+            padding: 1rem;
+            width: 300px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
 
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+        input[type="email"]:focus {
+            border-bottom-color: var(--accent-color);
+        }
+
+        button {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--text-secondary);
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1rem;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            position: absolute;
+            bottom: 2rem;
+            width: 100%;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #444;
+            letter-spacing: 0.1rem;
+            z-index: 10;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .brand-name {
+                font-size: 3.5rem;
+                letter-spacing: 0.2rem;
+            }
+            
+            input[type="email"] {
+                width: 200px;
+            }
+
+            .orb-1, .orb-2 {
+                opacity: 0.2; /* Tone down effects on mobile */
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-  <div class="cursor-glow" id="cursor"></div>
-
-  <div class="hero">
-    <div>
-      <h1>Your App Name</h1>
-      <p>Fast. Secure. Beautifully Designed.</p>
-      <button>Download App</button>
+    <div class="decoration-layer" id="scene">
+        <div class="orb orb-1" data-speed="2"></div>
+        <div class="orb orb-2" data-speed="-2"></div>
+        <div class="orb orb-3" data-speed="1"></div>
     </div>
-  </div>
 
-  <section>
-    <div class="card reveal">
-      <h2>Built for Speed</h2>
-      <p>
-        Experience lightning-fast performance with a modern architecture
-        designed to scale seamlessly across devices.
-      </p>
+    <div class="container">
+        <div class="badge">Collection Launching Soon</div>
+        <h1 class="brand-name">Terrys</h1>
+        <p class="tagline">The New Era of Fashion</p>
+
+        <form class="notify-form" onsubmit="event.preventDefault(); alert('Thank you. You are on the list.');">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Notify Me</button>
+        </form>
     </div>
-  </section>
 
-  <section>
-    <div class="card reveal">
-      <h2>Designed for Humans</h2>
-      <p>
-        Smooth animations, clean UI, and subtle interactions make your experience
-        feel premium and effortless.
-      </p>
+    <div class="footer">
+        &copy; 2024 TERRYS FASHION HOUSE. ALL RIGHTS RESERVED.
     </div>
-  </section>
 
-  <section>
-    <div class="card reveal">
-      <h2>Secure by Default</h2>
-      <p>
-        Built with modern security standards so you can focus on growth without
-        worrying about infrastructure.
-      </p>
-    </div>
-  </section>
+    <script>
+        // Professional Mouse Parallax Logic
+        // We move the elements slightly in the opposite direction of the mouse
+        // to create a 3D depth effect.
 
-  <footer>
-    © 2026 Your Company. All rights reserved.
-  </footer>
+        document.addEventListener('mousemove', (e) => {
+            const scene = document.getElementById('scene');
+            const layers = scene.querySelectorAll('.orb');
+            
+            // Calculate mouse position relative to center of screen
+            const x = (window.innerWidth - e.pageX * 2) / 100;
+            const y = (window.innerHeight - e.pageY * 2) / 100;
 
-  <script>
-    /* MOUSE GLOW */
-    const cursor = document.getElementById("cursor");
-    document.addEventListener("mousemove", (e) => {
-      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    });
+            layers.forEach(layer => {
+                const speed = layer.getAttribute('data-speed');
+                
+                // Apply the transform
+                // We use template literals to translate X and Y based on speed factor
+                const xPos = x * speed;
+                const yPos = y * speed;
 
-    /* SCROLL ANIMATION */
-    const reveals = document.querySelectorAll(".reveal");
+                layer.style.transform = `translate(${xPos}px, ${yPos}px)`;
+            });
+        });
 
-    function revealOnScroll() {
-      const windowHeight = window.innerHeight;
-      reveals.forEach(el => {
-        const top = el.getBoundingClientRect().top;
-        if (top < windowHeight - 100) {
-          el.classList.add("show");
-        }
-      });
-    }
-
-    window.addEventListener("scroll", revealOnScroll);
-    revealOnScroll();
-  </script>
+        // Mobile Optimization: 
+        // On touch devices, we can add a gentle gyroscope effect or just leave it static 
+        // to prevent battery drain. This script mainly targets desktop mouse movement.
+    </script>
 
 </body>
 </html>
