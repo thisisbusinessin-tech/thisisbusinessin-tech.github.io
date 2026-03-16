@@ -15,22 +15,27 @@ body {
     align-items: center;
     overflow: hidden;
     position: relative;
+    cursor: default; /* Keeps a clean cursor over the background */
 }
 
-/* Subtle gradient background */
-body::before {
-    content: '';
+/* Interactive mouse tracking glow */
+.glow {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
-    z-index: -1;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, rgba(0, 0, 0, 0) 60%);
+    border-radius: 50%;
+    pointer-events: none; /* Ensures the glow doesn't block text selection or clicks */
+    transform: translate(-50%, -50%); /* Centers the glow exactly on the cursor */
+    z-index: 0;
 }
 
 .container {
     text-align: center;
     max-width: 600px;
     padding: 2rem;
-    z-index: 1;
+    z-index: 1; /* Keeps the text layer above the glow */
+    position: relative;
     animation: fadeIn 1.5s ease-out;
 }
 
@@ -64,63 +69,6 @@ body::before {
     margin-bottom: 2.5rem;
 }
 
-.notify-form {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 1rem;
-}
-
-#email-input {
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
-    border: 1px solid #333;
-    background-color: transparent;
-    color: #fff;
-    width: 65%;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-
-#email-input:focus {
-    border-color: #fff;
-}
-
-.submit-btn {
-    padding: 1rem 2rem;
-    font-size: 0.9rem;
-    background-color: #fff;
-    color: #000;
-    border: none;
-    cursor: pointer;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.submit-btn:hover {
-    background-color: #ccc;
-}
-
-.submit-btn:active {
-    transform: scale(0.98);
-}
-
-.hidden {
-    display: none !important;
-}
-
-#success-message {
-    color: #ffffff;
-    font-size: 1rem;
-    margin-top: 1rem;
-    letter-spacing: 0.05rem;
-    border: 1px solid #333;
-    padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
 footer {
     margin-top: 4rem;
 }
@@ -148,7 +96,6 @@ footer {
 /* Mobile responsiveness */
 @media (max-width: 600px) {
     .brand-name { font-size: 2.5rem; }
-    .notify-form { flex-direction: column; }
-    #email-input { width: 100%; }
-    .submit-btn { width: 100%; }
+    /* Hide the cursor glow on mobile devices since there is no mouse */
+    .glow { display: none; } 
 }
