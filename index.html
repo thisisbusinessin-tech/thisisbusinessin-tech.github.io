@@ -1,101 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Apne Tailor</title>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>ApneTailor - Tailoring Made Easy</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
+    <link rel="stylesheet" href="style.css">
 
-    body {
-      height: 100vh;
-      background: radial-gradient(circle at top, #0f2027, #000);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    .container {
-      animation: fadeUp 1.2s ease forwards;
-    }
-
-    h1 {
-      font-size: 3.5rem;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 1.1rem;
-      opacity: 0.7;
-      margin-bottom: 30px;
-    }
-
-    .badge {
-      border: 1px solid #00e5ff;
-      color: #00e5ff;
-      display: inline-block;
-      padding: 6px 18px;
-      margin-bottom: 20px;
-      font-size: 0.8rem;
-      letter-spacing: 1px;
-    }
-
-    footer {
-      position: absolute;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      font-size: 0.85rem;
-      opacity: 0.6;
-    }
-
-    footer a {
-      color: #00e5ff;
-      text-decoration: none;
-      margin: 0 8px;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-  <div class="container">
-    <div class="badge">COMING SOON</div>
+    <!-- NAVBAR -->
+    <header>
+        <div class="container navbar">
 
-    <h1>Apne Tailor</h1>
+            <div class="logo">
+                <img src="assets/logo.png" alt="ApneTailor Logo">
+                <span>ApneTailor</span>
+            </div>
 
-    <p>Coming Soon</p>
-  </div>
+            <nav>
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#why-us">Why Us</a>
+                <a href="#download">Download</a>
+            </nav>
 
-  <footer>
-    © 2026 Apne Tailor. All rights reserved. <br><br>
+        </div>
+    </header>
 
-    <a href="/privacy-policy">Privacy Policy</a> |
-    <a href="/terms">Terms of Service</a>
-  </footer>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container hero-content">
+
+            <div class="hero-text">
+                <h1>
+                    Tailoring At Your Doorstep
+                </h1>
+
+                <p>
+                    Get custom stitching, alterations, and tailoring services
+                    without leaving your home. ApneTailor connects customers
+                    with skilled local tailors and provides pickup &
+                    delivery support.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#download" class="btn btn-primary">
+                        Coming Soon
+                    </a>
+
+                    <a href="#features" class="btn btn-secondary">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <span>ApneTailor App</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="section">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Features</h2>
+                <p>
+                    Designed to make tailoring simple, convenient,
+                    and reliable.
+                </p>
+            </div>
+
+            <div class="features-grid">
+
+                <div class="feature-card">
+                    <h3>Doorstep Pickup</h3>
+                    <p>
+                        Schedule pickup directly from your home.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Verified Tailors</h3>
+                    <p>
+                        Connect with experienced tailoring professionals.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Live Order Tracking</h3>
+                    <p>
+                        Track every stage of your order.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Secure Payments</h3>
+                    <p>
+                        Safe and transparent online payments.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Easy Measurements</h3>
+                    <p>
+                        Submit measurements directly through the app.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Customer Support</h3>
+                    <p>
+                        Dedicated support whenever you need assistance.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="section light">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>How It Works</h2>
+            </div>
+
+            <div class="steps">
+
+                <div class="step">
+                    <span>1</span>
+                    <h3>Place Order</h3>
+                    <p>Select tailoring service and provide details.</p>
+                </div>
+
+                <div class="step">
+                    <span>2</span>
+                    <h3>Pickup</h3>
+                    <p>Your clothing is collected from your doorstep.</p>
+                </div>
+
+                <div class="step">
+                    <span>3</span>
+                    <h3>Tailoring</h3>
+                    <p>Assigned tailor completes the work.</p>
+                </div>
+
+                <div class="step">
+                    <span>4</span>
+                    <h3>Delivery</h3>
+                    <p>Receive your finished garment at home.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- WHY US -->
+    <section id="why-us" class="section">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Why Choose ApneTailor?</h2>
+            </div>
+
+            <div class="why-grid">
+
+                <div class="why-card">
+                    Convenience
+                </div>
+
+                <div class="why-card">
+                    Trusted Tailors
+                </div>
+
+                <div class="why-card">
+                    Transparent Tracking
+                </div>
+
+                <div class="why-card">
+                    Quality Work
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section id="download" class="download-section">
+        <div class="container">
+
+            <h2>Launching Soon</h2>
+
+            <p>
+                Join the future of tailoring and get notified when
+                ApneTailor becomes available.
+            </p>
+
+            <button class="btn btn-primary">
+                Coming Soon On Android
+            </button>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+
+            <div class="footer-logo">
+                ApneTailor
+            </div>
+
+            <p>
+                Tailoring Made Easy.
+            </p>
+
+            <div class="footer-links">
+                <a href="/privacy-policy/">Privacy Policy</a>
+                <a href="/terms/">Terms & Conditions</a>
+            </div>
+
+            <p class="copyright">
+                © 2026 ApneTailor. All Rights Reserved.
+            </p>
+
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
