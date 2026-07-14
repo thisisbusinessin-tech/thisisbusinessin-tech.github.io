@@ -16,9 +16,14 @@ export default function BlogIndexPage() {
     <section className="section-padding">
       <div className="container-site">
         <h1 className="mb-4">Guides &amp; articles</h1>
-        <p className="text-lg text-neutral-600 max-w-2xl mb-10">
+        <p className="text-lg text-neutral-600 max-w-2xl mb-4">
           Practical answers to common tailoring questions. Each article is written to help you
           understand the process and make informed decisions.
+        </p>
+        <p className="text-sm text-neutral-500 mb-10">
+          <a href="/feed.xml" className="font-medium">
+            Subscribe via RSS
+          </a>
         </p>
 
         <ul className="grid gap-6 max-w-3xl">

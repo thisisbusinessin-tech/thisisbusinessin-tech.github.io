@@ -1,0 +1,166 @@
+import { createMetadata } from "@/lib/seo/metadata";
+import { LegalPageLayout } from "@/components/content/LegalPageLayout";
+import { siteConfig } from "@/lib/config/site";
+
+export const metadata = createMetadata({
+  title: "Data Compliance",
+  description:
+    "ApneTailor Data Compliance Statement — how we collect, use, store, protect, share, and retain information across our platform.",
+  path: "/data-compliance/"
+});
+
+export default function DataCompliancePage() {
+  return (
+    <LegalPageLayout title="Data Compliance" lastUpdated="June 2026">
+      <p>
+        This Data Compliance Statement explains how ApneTailor collects, uses, stores, protects,
+        shares, and retains information across the ApneTailor User (Customer) App, ApneTailor
+        Tailor App, and related services.
+      </p>
+      <p>
+        ApneTailor is committed to protecting user privacy, maintaining data security, and
+        handling personal information responsibly and transparently.
+      </p>
+
+      <h2>Scope</h2>
+      <p>This policy applies to:</p>
+      <ul>
+        <li>ApneTailor User App</li>
+        <li>ApneTailor Tailor App</li>
+        <li>Customer Support Services</li>
+        <li>Order Processing Systems</li>
+        <li>Pickup and Delivery Coordination Services</li>
+      </ul>
+
+      <h2>Information We Collect</h2>
+      <p>Depending on how you use the platform, we may collect:</p>
+      <ul>
+        <li>Name</li>
+        <li>Email Address</li>
+        <li>Phone Number</li>
+        <li>Profile Information</li>
+        <li>Pickup Addresses</li>
+        <li>Delivery Addresses</li>
+        <li>Order Details</li>
+        <li>Garment Measurements</li>
+        <li>Reference Images</li>
+        <li>Fabric Images</li>
+        <li>Device Information</li>
+        <li>Push Notification Tokens</li>
+        <li>Communication Records</li>
+        <li>Tailor Verification Information</li>
+        <li>Earnings and Payout Information (Tailors)</li>
+      </ul>
+
+      <h2>Why We Collect Data</h2>
+      <p>Information is collected only when necessary to operate the ApneTailor platform and deliver requested services.</p>
+      <p>Typical purposes include:</p>
+      <ul>
+        <li>Account creation and authentication</li>
+        <li>Tailor onboarding and verification</li>
+        <li>Order placement and management</li>
+        <li>Tailor matching and assignment</li>
+        <li>Pickup and delivery coordination</li>
+        <li>Customer support</li>
+        <li>Fraud prevention and security monitoring</li>
+        <li>Payment processing and reconciliation</li>
+        <li>Platform improvement and performance monitoring</li>
+        <li>Regulatory and legal compliance</li>
+      </ul>
+
+      <h2>Order Processing and Tailor Matching</h2>
+      <p>To complete tailoring orders, relevant order information may be shared with assigned tailors.</p>
+      <p>This may include:</p>
+      <ul>
+        <li>Measurements</li>
+        <li>Order Notes</li>
+        <li>Reference Images</li>
+        <li>Fabric Information</li>
+        <li>Pickup and Delivery Requirements</li>
+        <li>Necessary Contact Information</li>
+      </ul>
+      <p>Only information reasonably required to complete an order is made available to participating service providers.</p>
+
+      <h2>Courier and Delivery Partners</h2>
+      <p>
+        ApneTailor may work with third-party logistics and courier providers for pickup and
+        delivery services.
+      </p>
+      <p>Where required, limited information may be shared to complete deliveries, including:</p>
+      <ul>
+        <li>Pickup Address</li>
+        <li>Delivery Address</li>
+        <li>Recipient Contact Information</li>
+        <li>Order Reference Information</li>
+      </ul>
+
+      <h2>Notifications and Communications</h2>
+      <p>Push notifications, emails, phone calls, and in-app communications may be used to provide:</p>
+      <ul>
+        <li>Order Updates</li>
+        <li>Delivery Updates</li>
+        <li>Support Messages</li>
+        <li>Security Notifications</li>
+        <li>Account Alerts</li>
+      </ul>
+
+      <h2>Data Security</h2>
+      <p>
+        ApneTailor applies reasonable administrative, technical, and organizational security
+        measures to help protect information against unauthorized access, loss, misuse,
+        disclosure, alteration, or destruction.
+      </p>
+      <p>
+        While no internet-based service can guarantee absolute security, we continuously work
+        to safeguard the information entrusted to us.
+      </p>
+
+      <h2>Data Retention</h2>
+      <p>Information is retained only for as long as necessary to:</p>
+      <ul>
+        <li>Provide services</li>
+        <li>Maintain operational records</li>
+        <li>Prevent fraud and abuse</li>
+        <li>Resolve disputes</li>
+        <li>Meet accounting obligations</li>
+        <li>Comply with legal requirements</li>
+      </ul>
+      <p>Account deletion requests are processed according to our Account Deletion Policy.</p>
+
+      <h2>Account Deletion and Anonymization</h2>
+      <p>
+        Following a valid deletion request and completion of the applicable retention period,
+        personal information is deleted or anonymized.
+      </p>
+      <p>
+        Certain operational, legal, financial, and compliance records may be retained, but
+        personal identifiers are removed or replaced with anonymized references such as
+        &quot;Deleted User&quot; or &quot;Deleted Tailor&quot;.
+      </p>
+
+      <h2>Your Rights and Controls</h2>
+      <p>Subject to applicable laws, users and tailors may:</p>
+      <ul>
+        <li>Access account information</li>
+        <li>Update eligible profile information</li>
+        <li>Request account deletion</li>
+        <li>Contact support regarding data concerns</li>
+      </ul>
+
+      <h2>Compliance Commitment</h2>
+      <p>
+        ApneTailor is committed to responsible data handling practices and strives to comply
+        with applicable privacy, consumer protection, security, and data protection
+        requirements relevant to the operation of the platform.
+      </p>
+
+      <h2>Contact Us</h2>
+      <p>For questions regarding privacy, security, compliance, or data handling, please contact:</p>
+      <p>
+        Email: <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a>
+        <br />
+        Website: <a href={siteConfig.domain}>{siteConfig.domain}</a>
+      </p>
+    </LegalPageLayout>
+  );
+}

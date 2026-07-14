@@ -1,0 +1,57 @@
+# ApneTailor
+
+> ApneTailor is a technology-enabled tailoring platform connecting customers with nearby verified tailors for custom stitching with doorstep pickup and delivery, progress visibility, and transparent pricing.
+
+Chahiye darji? Done ji.
+
+## Canonical
+
+- Website: https://apnetailor.com
+
+## Core pages
+
+- [Homepage](https://apnetailor.com/): Primary entry point and app download CTA
+- [How It Works](https://apnetailor.com/how-it-works/): Customer stitching workflow
+- [Services](https://apnetailor.com/services/): Supported garment categories
+- [Women's Tailoring](https://apnetailor.com/services/women/): Women's garment hub
+- [Men's Tailoring](https://apnetailor.com/services/men/): Men's garment hub
+- [About](https://apnetailor.com/about/): Company and founders
+- [FAQ](https://apnetailor.com/faq/): Common customer questions
+- [Support](https://apnetailor.com/support/): Customer support
+- [Contact](https://apnetailor.com/contact/): Contact information
+
+## Supported garments
+
+Women: Suit, Saree, Kurti, Lehenga, Blouse
+Men: Kurta, Formal Suit, Shirt, Sherwani, Pant
+
+Alterations are not currently offered.
+
+## Editorial content
+
+- [Guides & Articles](https://apnetailor.com/blog/): Question-led tailoring guides
+- [Editorial Team](https://apnetailor.com/editorial-team/): Authorship information
+- [Editorial Policy](https://apnetailor.com/editorial-policy/): Content standards
+- [RSS Feed](https://apnetailor.com/feed.xml): Article feed
+
+## Policies
+
+- [Privacy Policy](https://apnetailor.com/privacy-policy/)
+- [Terms of Service](https://apnetailor.com/terms/)
+- [Data Compliance](https://apnetailor.com/data-compliance/)
+- [Account Deletion](https://apnetailor.com/delete-accounts/)
+- [Refund and Cancellation Policy](https://apnetailor.com/refund-and-cancellation-policy/)
+- [Pickup and Delivery Policy](https://apnetailor.com/pickup-and-delivery-policy/)
+- [Review Policy](https://apnetailor.com/review-policy/)
+- [Accessibility Statement](https://apnetailor.com/accessibility-statement/)
+- [Security & Trust](https://apnetailor.com/security/)
+
+## Company
+
+- Founders: Pushpit Trehan, Yugank Trehan
+- Support: support@apnetailor.com
+- Service availability: Expanding to more cities across India
+
+## Optional
+
+- [Media & Press](https://apnetailor.com/media/): Media resources

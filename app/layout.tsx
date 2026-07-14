@@ -12,7 +12,12 @@ export const metadata: Metadata = {
     template: siteConfig.defaultMetadata.titleTemplate
   },
   description: siteConfig.defaultMetadata.defaultDescription,
-  robots: { index: true, follow: true }
+  robots: { index: true, follow: true },
+  alternates: {
+    types: {
+      "application/rss+xml": `${siteConfig.domain}/feed.xml`
+    }
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
