@@ -1,6 +1,6 @@
-import type { FAQ } from "@/lib/validation/content";
+import { faqSchema, type FAQ } from "@/lib/validation/content";
 
-export const faqs: FAQ[] = [
+const rawFaqs = [
   {
     id: "how-it-works",
     topic: "Getting Started",
@@ -87,6 +87,8 @@ export const faqs: FAQ[] = [
       "You can reach ApneTailor support at support@apnetailor.com. For order-specific issues, use the in-app support and chat features."
   }
 ];
+
+export const faqs: FAQ[] = rawFaqs.map((faq) => faqSchema.parse(faq));
 
 export function getFaqsByTopic() {
   const topics = new Map<string, FAQ[]>();

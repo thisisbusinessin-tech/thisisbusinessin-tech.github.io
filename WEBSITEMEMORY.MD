@@ -3004,7 +3004,7 @@ The project is not complete simply because the homepage looks good.
 
 
 
-Phase 1 research and Phase 2 planning completed. Awaiting user review of planning documents before implementation.
+Implementation complete. V1 website ready for localhost review and user approval before deployment.
 
 
 
@@ -3012,7 +3012,7 @@ Phase 1 research and Phase 2 planning completed. Awaiting user review of plannin
 
 
 
-Created the initial research summary, PRD, and technical architecture documents in `.trae/documents/`.
+Full V1 static website built, validated, and documented. 43 pre-rendered pages, all required routes, SEO/AI discovery systems, content validation, and test suite passing.
 
 
 
@@ -3020,7 +3020,7 @@ Created the initial research summary, PRD, and technical architecture documents 
 
 
 
-Planning review handoff and preparation for implementation after user approval.
+Awaiting user review: localhost walkthrough, legal/policy approval, Play Store URL, and explicit deployment approval.
 
 
 
@@ -3028,7 +3028,7 @@ Planning review handoff and preparation for implementation after user approval.
 
 
 
-None.
+Homepage, How It Works, About, Contact, Support, FAQ, Services hub (women/men + 10 garment pages), Blog hub + 6 articles, Editorial Team, Editorial Policy, Review Policy, Accessibility Statement, Security, Media, Privacy Policy, Terms, Data Compliance, Account Deletion, Refund & Cancellation (draft), Pickup & Delivery (draft), 404.
 
 
 
@@ -3036,7 +3036,7 @@ None.
 
 
 
-None.
+Next.js 16 App Router static export, typed site config, Zod content validation, SEO metadata + canonical URLs, JSON-LD schema, sitemap.xml, robots.txt, RSS feed, llms.txt, security headers (`public/_headers`), design system (Tailwind 4), responsive header/footer with mobile nav, content validation script, smoke tests, full documentation set.
 
 
 
@@ -3044,11 +3044,7 @@ None.
 
 
 
-Planning artifacts:
-
-* `.trae/documents/apnetailor-website-research-summary.md`
-* `.trae/documents/apnetailor-website-prd.md`
-* `.trae/documents/apnetailor-website-technical-architecture.md`
+6 seed blog articles (question-led pattern), 12 FAQs, 10 garment service pages, legal pages preserved from live site, draft policy pages for refund/pickup-delivery, planning artifacts in `.trae/documents/`.
 
 
 
@@ -3056,7 +3052,12 @@ Planning artifacts:
 
 
 
-No codebase exists yet. Planning artifacts created successfully; implementation validation has not started.
+- `npm run typecheck` — pass
+- `npm run lint` — pass
+- `npm run validate:content` — pass (6 articles, 12 FAQs, 32 indexable routes)
+- `npm run test` — pass (4 tests)
+- `npm run build` — pass (43 static pages)
+- `npm audit` — 2 moderate transitive postcss advisories via Next.js (documented, no safe fix without breaking downgrade)
 
 
 
@@ -3064,7 +3065,11 @@ No codebase exists yet. Planning artifacts created successfully; implementation 
 
 
 
-No code issues recorded yet. Several business facts remain intentionally unresolved and are tracked below.
+- App download URL is intentional placeholder until Play Store listing is provided
+- Refund and Pickup/Delivery policies are drafts pending business approval
+- Service areas list empty (expansion wording only)
+- Product screenshots/videos not yet supplied
+- 2 moderate npm audit advisories in transitive postcss (Next.js dependency)
 
 
 
@@ -3072,11 +3077,7 @@ No code issues recorded yet. Several business facts remain intentionally unresol
 
 
 
-Not deployed.
-
-
-
-Deployment requires explicit user approval.
+Not deployed. Requires explicit user approval per project rules.
 
 
 
@@ -3084,7 +3085,7 @@ Deployment requires explicit user approval.
 
 
 
-2026-07-14
+2026-07-15
 
 
 
@@ -3132,11 +3133,15 @@ Deployment requires explicit user approval.
   - Alternatives considered: Rewriting or consolidating legal content in early implementation.
   - Impact: New design must preserve `/privacy-policy/`, `/terms/`, `/data-compliance/`, and `/delete-accounts/` while avoiding silent substantive changes.
 
-- 2026-07-14
-  - Decision: Prioritize a trust-and-process-led information architecture supported by a small, high-quality editorial seed set.
-  - Reason: ApneTailor is a new business and cannot rely on fabricated social proof or mass SEO content.
-  - Alternatives considered: Generic landing-page structure or large-volume blog seeding.
-  - Impact: Homepage, How It Works, garment pages, FAQ, support, and editorial explainers become the first implementation focus.
+- 2026-07-15
+  - Decision: Use Next.js 16 native ESLint flat config (`eslint-config-next/core-web-vitals` + `/typescript`) instead of `@eslint/eslintrc` FlatCompat.
+  - Reason: FlatCompat caused circular JSON validation errors with ESLint 9.
+  - Impact: Removed `@eslint/eslintrc` dependency; lint passes cleanly.
+
+- 2026-07-15
+  - Decision: Complete V1 as static export with repository-based content, no Markdown mirrors.
+  - Reason: Markdown mirrors add duplication without clear V1 value; llms.txt and RSS cover AI discovery needs.
+  - Impact: AI_DISCOVERY.md documents the intentional omission.
 
 
 
@@ -3189,13 +3194,17 @@ Current known items:
 
 
 
-1\. User reviews the planning documents in `.trae/documents/`.
-2\. Confirm any business or legal facts that must be finalized before implementation.
-3\. Initialize the Next.js project foundation after approval.
-4\. Implement typed configuration, content validation, and core layout systems.
-5\. Build homepage, How It Works, services, support, FAQ, and legal integration.
-6\. Build the editorial system and initial content seed.
-7\. Run validation and prepare localhost review.
+1\. User runs `npm run dev` and reviews the site on desktop and mobile.
+
+2\. User provides Google Play Store URL for `content/site/config.ts` app download.
+
+3\. User reviews and approves draft policies (refund, pickup/delivery).
+
+4\. User confirms service area list before adding cities to `content/service-areas/index.ts`.
+
+5\. User performs legal review of all policy pages.
+
+6\. User gives explicit deployment approval — then follow DEPLOYMENT.md and LAUNCH_CHECKLIST.md.
 
 
 

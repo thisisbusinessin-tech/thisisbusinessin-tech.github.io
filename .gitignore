@@ -18,3 +18,5 @@ pnpm-debug.log*
 
 # Generated docs or caches
 .turbo
+
+.vercel
