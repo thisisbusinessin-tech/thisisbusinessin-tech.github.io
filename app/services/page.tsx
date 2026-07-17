@@ -15,7 +15,7 @@ export default function ServicesPage() {
     <section className="section-padding">
       <div className="container-site">
         <h1 className="mb-4">Tailoring services</h1>
-        <p className="text-lg text-neutral-600 max-w-2xl mb-12">
+        <p className="page-intro max-w-2xl mb-12">
           ApneTailor supports custom stitching for a range of women&apos;s and men&apos;s
           garments. Select a category to learn what to prepare and how the process works.
         </p>
@@ -32,10 +32,10 @@ export default function ServicesPage() {
                 <li key={g.slug}>
                   <Link
                     href={`/services/women/${g.slug}/`}
-                    className="block p-5 border border-neutral-200 rounded-lg hover:border-brand-300 hover:bg-brand-50 no-underline transition-colors"
+                    className="surface-panel block p-5 no-underline transition-colors"
                   >
-                    <span className="font-medium text-brand-800">{g.name}</span>
-                    <p className="text-sm text-neutral-600 mt-1">{g.description}</p>
+                    <span className="font-semibold text-brand-800">{g.name}</span>
+                    <p className="mt-2 leading-7 text-neutral-600">{g.description}</p>
                   </Link>
                 </li>
               ))}
@@ -53,10 +53,10 @@ export default function ServicesPage() {
                 <li key={g.slug}>
                   <Link
                     href={`/services/men/${g.slug}/`}
-                    className="block p-5 border border-neutral-200 rounded-lg hover:border-brand-300 hover:bg-brand-50 no-underline transition-colors"
+                    className="surface-panel block p-5 no-underline transition-colors"
                   >
-                    <span className="font-medium text-brand-800">{g.name}</span>
-                    <p className="text-sm text-neutral-600 mt-1">{g.description}</p>
+                    <span className="font-semibold text-brand-800">{g.name}</span>
+                    <p className="mt-2 leading-7 text-neutral-600">{g.description}</p>
                   </Link>
                 </li>
               ))}
@@ -64,8 +64,8 @@ export default function ServicesPage() {
           </div>
         </div>
 
-        <div className="mt-16 text-center p-8 bg-brand-50 rounded-xl">
-          <p className="text-neutral-600 mb-4">
+        <div className="surface-panel mt-16 p-8 text-center">
+          <p className="text-neutral-600 mb-4 leading-7">
             Alterations are not currently offered as a supported service.
           </p>
           <AppDownloadButton />

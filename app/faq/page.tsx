@@ -16,7 +16,7 @@ export default function FAQPage() {
     <section className="section-padding">
       <div className="container-site max-w-3xl">
         <h1 className="mb-4">Frequently asked questions</h1>
-        <p className="text-lg text-neutral-600 leading-relaxed mb-10">
+        <p className="page-intro mb-10">
           Find answers to common questions about ApneTailor. For more detailed guides, visit
           our <Link href="/blog/">Guides &amp; Articles</Link> section.
         </p>
@@ -29,13 +29,13 @@ export default function FAQPage() {
             <div className="space-y-3">
               {topicFaqs.map((faq) => (
                 <details key={faq.id} className="card group">
-                  <summary className="cursor-pointer font-medium text-brand-800 list-none flex justify-between items-center">
+                  <summary className="list-none flex cursor-pointer items-center justify-between gap-4 text-[1rem] font-semibold text-brand-800">
                     {faq.question}
                     <span className="text-neutral-400 ml-4 flex-shrink-0" aria-hidden="true">
                       +
                     </span>
                   </summary>
-                  <p className="mt-3 text-neutral-600 text-sm leading-relaxed">{faq.answer}</p>
+                  <p className="mt-3 text-[0.98rem] leading-8 text-neutral-600">{faq.answer}</p>
                   {faq.needsReview && (
                     <p className="mt-2 text-xs text-neutral-400 italic">
                       This answer may be updated once final business rules are confirmed.

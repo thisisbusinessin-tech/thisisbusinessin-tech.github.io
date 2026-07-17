@@ -16,7 +16,7 @@ export default function AboutPage() {
         <h1 className="mb-6">About ApneTailor</h1>
 
         <div className="prose-content text-neutral-700">
-          <p className="text-lg leading-relaxed">
+          <p className="page-intro">
             ApneTailor is a technology-enabled tailoring platform that connects customers with
             nearby verified tailors and coordinates the entire stitching workflow — from
             measurements and fabric logistics to progress tracking and doorstep delivery.

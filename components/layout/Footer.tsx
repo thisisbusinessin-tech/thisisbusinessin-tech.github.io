@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/config/site";
+import { AppDownloadButton } from "@/components/ui/AppDownloadButton";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -7,10 +8,28 @@ export function Footer() {
   return (
     <footer className="bg-brand-900 text-neutral-300" role="contentinfo">
       <div className="container-site section-padding">
+        <div className="footer-cta surface-panel mb-12 overflow-hidden bg-transparent p-6 text-white md:p-8">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="max-w-2xl">
+              <p className="section-kicker border-white/12 bg-white/8 text-white">
+                Download ApneTailor App
+              </p>
+              <h2 className="mt-4 text-white">Get tailoring convenience without repeated market trips</h2>
+              <p className="mt-3 max-w-xl text-white/72">
+                Place your stitching order, share measurements, review tailor responses, and
+                track progress from one clear flow.
+              </p>
+            </div>
+            <div className="flex items-center">
+              <AppDownloadButton className="shadow-[0_22px_48px_rgba(79,155,255,0.22)]" />
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           <div>
-            <p className="text-white font-bold text-lg mb-3">{siteConfig.brand.name}</p>
-            <p className="text-sm leading-relaxed mb-4">{siteConfig.brand.tagline}</p>
+            <p className="text-white font-extrabold text-lg mb-3 tracking-[-0.03em]">{siteConfig.brand.name}</p>
+            <p className="text-sm leading-relaxed mb-4 text-white/72">{siteConfig.brand.tagline}</p>
             <p className="text-sm leading-relaxed text-neutral-400">
               {siteConfig.brand.description}
             </p>
@@ -89,7 +108,7 @@ export function Footer() {
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <li>
-      <Link href={href} className="text-neutral-400 hover:text-white no-underline transition-colors">
+      <Link href={href} className="footer-link">
         {children}
       </Link>
     </li>

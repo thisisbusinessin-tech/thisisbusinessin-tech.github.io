@@ -106,9 +106,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <div className="prose-content text-neutral-700">{renderContent(article)}</div>
 
           {article.apneTailorConnection && (
-            <div className="mt-10 p-6 bg-brand-50 rounded-xl border border-brand-100">
+            <div className="surface-panel mt-10 p-6">
               <h2 className="text-lg mb-2">How ApneTailor can help</h2>
-              <p className="text-neutral-600 text-sm leading-relaxed">
+              <p className="text-neutral-600 leading-8">
                 {article.apneTailorConnection}
               </p>
               <div className="mt-4">
@@ -123,10 +123,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               <div className="space-y-3">
                 {article.faqs.map((faq) => (
                   <details key={faq.question} className="card">
-                    <summary className="cursor-pointer font-medium text-brand-800 list-none">
+                    <summary className="list-none cursor-pointer text-[1rem] font-semibold text-brand-800">
                       {faq.question}
                     </summary>
-                    <p className="mt-3 text-neutral-600 text-sm leading-relaxed">
+                    <p className="mt-3 text-[0.98rem] leading-8 text-neutral-600">
                       {faq.answer}
                     </p>
                   </details>
@@ -135,9 +135,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </section>
           )}
 
-          <section className="mt-12 p-6 bg-neutral-50 rounded-xl">
+          <section className="surface-panel mt-12 p-6">
             <h2 className="text-lg mb-3">TL;DR</h2>
-            <p className="text-neutral-700 text-sm leading-relaxed">{article.tldr}</p>
+            <p className="text-neutral-700 leading-8">{article.tldr}</p>
           </section>
         </div>
       </article>

@@ -16,7 +16,7 @@ export default function BlogIndexPage() {
     <section className="section-padding">
       <div className="container-site">
         <h1 className="mb-4">Guides &amp; articles</h1>
-        <p className="text-lg text-neutral-600 max-w-2xl mb-4">
+        <p className="page-intro max-w-2xl mb-4">
           Practical answers to common tailoring questions. Each article is written to help you
           understand the process and make informed decisions.
         </p>
@@ -31,13 +31,13 @@ export default function BlogIndexPage() {
             <li key={article.slug}>
               <Link
                 href={`/blog/${article.slug}/`}
-                className="block p-6 border border-neutral-200 rounded-lg hover:border-brand-300 hover:bg-brand-50 no-underline transition-colors"
+                className="surface-panel block p-6 no-underline transition-colors"
               >
                 <p className="text-xs text-brand-600 font-semibold uppercase tracking-wider mb-2">
                   {article.category}
                 </p>
-                <h2 className="text-xl mb-2">{article.title}</h2>
-                <p className="text-sm text-neutral-600">{article.description}</p>
+                <h2 className="mb-2 text-[1.35rem]">{article.title}</h2>
+                <p className="leading-7 text-neutral-600">{article.description}</p>
                 <p className="text-xs text-neutral-400 mt-3">
                   {article.publishedAt} · {article.author}
                 </p>
