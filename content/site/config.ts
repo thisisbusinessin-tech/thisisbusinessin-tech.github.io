@@ -18,7 +18,18 @@ export const siteConfig = {
     placeholderMessage:
       "The app download link will be available here once the Google Play Store listing is finalized."
   },
+  tailorAppDownload: {
+    url: null as string | null,
+    status: "placeholder" as "placeholder" | "live",
+    label: "Download the ApneTailor Tailor App",
+    placeholderMessage:
+      "Add the Tailor App download URL here when the listing is ready."
+  },
   expansionWording: "ApneTailor is expanding to more cities across India.",
+  socialPreview: {
+    path: "/social-preview.png",
+    alt: "ApneTailor social preview with the logo and the tagline Tailoring Made Easy."
+  },
   legalRoutes: {
     privacyPolicy: "/privacy-policy/",
     terms: "/terms/",

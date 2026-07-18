@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { siteConfig } from "@/lib/config/site";
+import { AppDownloadButton } from "@/components/ui/AppDownloadButton";
 
 const navLinks = [
   { href: "/how-it-works/", label: "How It Works" },
@@ -26,11 +27,11 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 px-3 pt-3 md:px-5">
+    <header className="sticky top-0 z-50">
       <div
         className={[
-          "mx-auto transition-all duration-300 ease-out",
-          isCompact ? "max-w-6xl" : "max-w-[90rem]"
+          "transition-all duration-300 ease-out",
+          isCompact ? "mx-auto max-w-6xl px-3 pt-3 md:px-5" : "max-w-none px-0 pt-0"
         ].join(" ")}
       >
         <div
@@ -38,38 +39,25 @@ export function Header() {
             "overflow-hidden border border-white/10 bg-brand-900/88 text-white backdrop-blur-xl shadow-[0_22px_60px_rgba(3,27,55,0.22)]",
             "transition-all duration-300 ease-out",
             isCompact
-              ? "rounded-[1.75rem] px-4 py-3 md:px-6 md:py-3.5"
-              : "rounded-[1.2rem] px-4 py-3.5 md:px-7 md:py-4.5"
+              ? "rounded-[1.7rem] px-4 py-3 md:px-6 md:py-3.5"
+              : "rounded-b-[1.65rem] rounded-t-none px-4 py-3.5 md:px-8 md:py-4.5"
           ].join(" ")}
         >
           <div className="flex items-center justify-between gap-4">
             <Link
               href="/"
-              className="flex min-w-0 items-center gap-3 no-underline"
+              className="flex min-w-0 items-center no-underline"
               aria-label={`${siteConfig.brand.name} homepage`}
             >
-              <div className="relative h-10 w-10 overflow-hidden rounded-xl bg-white/6 ring-1 ring-white/10 md:h-11 md:w-11">
+              <div className="relative h-11 w-[7.25rem] overflow-hidden md:h-12 md:w-[8.25rem]">
                 <Image
                   src="/logo-white.png"
                   alt={`${siteConfig.brand.name} logo`}
                   fill
-                  sizes="44px"
-                  className="object-contain p-1.5"
+                  sizes="132px"
+                  className="object-contain object-left"
                   priority
                 />
-              </div>
-              <div className="min-w-0">
-                <p className="truncate text-base font-extrabold tracking-[-0.03em] text-white md:text-lg">
-                  {siteConfig.brand.name}
-                </p>
-                <p
-                  className={[
-                    "truncate text-[0.72rem] font-medium text-white/64 transition-all duration-300",
-                    isCompact ? "max-w-0 opacity-0 md:max-w-0" : "max-w-[16rem] opacity-100"
-                  ].join(" ")}
-                >
-                  {siteConfig.brand.tagline}
-                </p>
               </div>
             </Link>
 
@@ -86,9 +74,7 @@ export function Header() {
             </nav>
 
             <div className="hidden md:block">
-              <Link href="/support/" className="btn-primary min-h-0 px-5 py-2.5 text-sm">
-                Get the App
-              </Link>
+              <AppDownloadButton className="min-h-0 px-5 py-2.5 text-sm" />
             </div>
 
             <MobileNav links={navLinks} />
@@ -131,9 +117,7 @@ function MobileNav({ links }: { links: { href: string; label: string }[] }) {
             {link.label}
           </Link>
         ))}
-        <Link href="/support/" className="btn-primary mt-2 text-center text-sm">
-          Get the App
-        </Link>
+        <AppDownloadButton className="mt-2 text-center text-sm" />
       </nav>
     </details>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createMetadata } from "@/lib/seo/metadata";
+import { FaqAccordionItem } from "@/components/ui/FaqAccordionItem";
 import { getFaqsByTopic } from "@/content/faqs";
 
 export const metadata = createMetadata({
@@ -28,20 +29,16 @@ export default function FAQPage() {
             </h2>
             <div className="space-y-3">
               {topicFaqs.map((faq) => (
-                <details key={faq.id} className="card group">
-                  <summary className="list-none flex cursor-pointer items-center justify-between gap-4 text-[1rem] font-semibold text-brand-800">
-                    {faq.question}
-                    <span className="text-neutral-400 ml-4 flex-shrink-0" aria-hidden="true">
-                      +
-                    </span>
-                  </summary>
-                  <p className="mt-3 text-[0.98rem] leading-8 text-neutral-600">{faq.answer}</p>
-                  {faq.needsReview && (
-                    <p className="mt-2 text-xs text-neutral-400 italic">
-                      This answer may be updated once final business rules are confirmed.
-                    </p>
-                  )}
-                </details>
+                <FaqAccordionItem
+                  key={faq.id}
+                  question={faq.question}
+                  answer={faq.answer}
+                  note={
+                    faq.needsReview
+                      ? "This answer may be updated once final business rules are confirmed."
+                      : undefined
+                  }
+                />
               ))}
             </div>
           </div>

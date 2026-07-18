@@ -21,6 +21,7 @@ export function createMetadata({
   modifiedTime
 }: PageMetadataInput): Metadata {
   const canonical = `${siteConfig.domain}${path}`;
+  const socialImage = `${siteConfig.domain}${siteConfig.socialPreview.path}`;
 
   return {
     title,
@@ -33,12 +34,21 @@ export function createMetadata({
       description,
       url: canonical,
       siteName: siteConfig.brand.name,
-      locale: "en_IN"
+      locale: "en_IN",
+      images: [
+        {
+          url: socialImage,
+          width: 1200,
+          height: 630,
+          alt: siteConfig.socialPreview.alt
+        }
+      ]
     },
     twitter: {
       card: "summary_large_image",
       title,
-      description
+      description,
+      images: [socialImage]
     },
     ...(ogType === "article" && publishedTime
       ? {
