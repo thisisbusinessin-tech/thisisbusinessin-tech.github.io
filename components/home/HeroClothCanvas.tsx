@@ -91,28 +91,40 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
 
     const buildWeavePattern = () => {
       const tile = document.createElement("canvas");
-      tile.width = 28;
-      tile.height = 28;
+      tile.width = 34;
+      tile.height = 34;
 
       const tileContext = tile.getContext("2d");
       if (!tileContext) return null;
 
       tileContext.clearRect(0, 0, tile.width, tile.height);
-      tileContext.strokeStyle = "rgba(255, 255, 255, 0.055)";
+      tileContext.fillStyle = "rgba(255, 255, 255, 0.012)";
+      tileContext.fillRect(0, 0, tile.width, tile.height);
+
+      tileContext.strokeStyle = "rgba(255, 255, 255, 0.07)";
       tileContext.lineWidth = 1;
 
-      for (let offset = -tile.height; offset < tile.width * 2; offset += 7) {
+      for (let offset = 4.5; offset < tile.width; offset += 6) {
         tileContext.beginPath();
         tileContext.moveTo(offset, 0);
-        tileContext.lineTo(offset - tile.height, tile.height);
+        tileContext.lineTo(offset, tile.height);
         tileContext.stroke();
       }
 
-      tileContext.strokeStyle = "rgba(1, 17, 38, 0.08)";
-      for (let offset = 0; offset < tile.height * 2; offset += 9) {
+      tileContext.strokeStyle = "rgba(255, 255, 255, 0.045)";
+      for (let offset = 4.5; offset < tile.height; offset += 6) {
         tileContext.beginPath();
         tileContext.moveTo(0, offset);
-        tileContext.lineTo(tile.width, offset - tile.width);
+        tileContext.lineTo(tile.width, offset);
+        tileContext.stroke();
+      }
+
+      tileContext.strokeStyle = "rgba(2, 16, 34, 0.12)";
+      tileContext.lineWidth = 0.8;
+      for (let offset = -tile.height; offset < tile.width * 2; offset += 11) {
+        tileContext.beginPath();
+        tileContext.moveTo(offset, 0);
+        tileContext.lineTo(offset - tile.height, tile.height);
         tileContext.stroke();
       }
 
@@ -131,8 +143,8 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
       ctx.clearRect(0, 0, width, height);
 
       const baseGradient = ctx.createLinearGradient(0, 0, 0, height);
-      baseGradient.addColorStop(0, "#020508");
-      baseGradient.addColorStop(0.5, "#05080d");
+      baseGradient.addColorStop(0, "#03122a");
+      baseGradient.addColorStop(0.5, "#020a18");
       baseGradient.addColorStop(1, "#000000");
       ctx.fillStyle = baseGradient;
       ctx.fillRect(0, 0, width, height);
@@ -172,7 +184,7 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
       canvas.style.height = height + "px";
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const clothWidthRatio = width >= 1280 ? 0.89 : width >= 1024 ? 0.92 : 1.02;
+      const clothWidthRatio = width >= 1280 ? 1.04 : width >= 1024 ? 1.08 : 1.16;
       const clothWidth = width * clothWidthRatio;
       const startX = -(clothWidth - width) / 2;
       spacing = clothWidth / cols;
@@ -364,14 +376,14 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
       context.save();
       context.clip(meshPath);
       const clothGrad = context.createLinearGradient(0, 0, 0, height);
-      clothGrad.addColorStop(0, "#0c3f85");
-      clothGrad.addColorStop(0.5, "#063672");
-      clothGrad.addColorStop(1, "#031b37");
+      clothGrad.addColorStop(0, "#1260c9");
+      clothGrad.addColorStop(0.5, "#0b4d9f");
+      clothGrad.addColorStop(1, "#063672");
       context.fillStyle = clothGrad;
       context.fillRect(0, 0, width, height);
       // Then overlay the weave texture on top for fabric appearance
       if (weavePattern) {
-        context.globalAlpha = 0.22;
+        context.globalAlpha = width >= 1024 ? 0.3 : 0.26;
         context.fillStyle = weavePattern;
         context.fillRect(0, 0, width, height);
       }
@@ -447,6 +459,20 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
       pointer.active = true;
     };
 
+    const handlePointerDown = (event: PointerEvent) => {
+      if (reducedMotionQuery.matches) return;
+      const rect = host.getBoundingClientRect();
+      const nextX = event.clientX - rect.left;
+      const nextY = event.clientY - rect.top;
+      pointer.px = nextX;
+      pointer.py = nextY;
+      pointer.x = nextX;
+      pointer.y = nextY;
+      pointer.vx = 0;
+      pointer.vy = 0;
+      pointer.active = true;
+    };
+
     const handlePointerLeave = () => {
       pointer.active = false;
       pointer.vx = 0;
@@ -477,8 +503,11 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
     buildMesh();
     start();
 
+    host.addEventListener("pointerdown", handlePointerDown, { passive: true });
     host.addEventListener("pointermove", handlePointerMove, { passive: true });
     host.addEventListener("pointerleave", handlePointerLeave, { passive: true });
+    host.addEventListener("pointerup", handlePointerLeave, { passive: true });
+    host.addEventListener("pointercancel", handlePointerLeave, { passive: true });
     document.addEventListener("visibilitychange", handleVisibility);
 
     if (typeof reducedMotionQuery.addEventListener === "function") {
@@ -492,8 +521,11 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
 
     return () => {
       stop();
+      host.removeEventListener("pointerdown", handlePointerDown);
       host.removeEventListener("pointermove", handlePointerMove);
       host.removeEventListener("pointerleave", handlePointerLeave);
+      host.removeEventListener("pointerup", handlePointerLeave);
+      host.removeEventListener("pointercancel", handlePointerLeave);
       document.removeEventListener("visibilitychange", handleVisibility);
       if (typeof reducedMotionQuery.removeEventListener === "function") {
         reducedMotionQuery.removeEventListener("change", handleReducedMotionChange);

@@ -262,13 +262,21 @@ function HeroMobileMenu({
 
       <div className="hero-mobile-panel">
         <nav className="flex flex-col gap-1" aria-label="Hero navigation mobile">
-          {heroNavLinks.map((link) => (
-            <Link key={link.href} href={link.href} onClick={closeMenu} className="hero-mobile-link">
+          {heroNavLinks.map((link, index) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={closeMenu}
+              className="hero-mobile-link"
+              style={{ ["--menu-item-index" as string]: index }}
+            >
               {link.label}
             </Link>
           ))}
         </nav>
-        <AppDownloadButton className="mt-3 w-full justify-center text-sm" />
+        <div style={{ ["--menu-item-index" as string]: heroNavLinks.length } as CSSProperties}>
+          <AppDownloadButton className="hero-mobile-cta mt-3 w-full justify-center text-sm" />
+        </div>
       </div>
     </details>
   );

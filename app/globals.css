@@ -274,13 +274,13 @@
     inset: 0;
     background:
       radial-gradient(
-        150px circle at var(--glow-x) var(--glow-y),
-        rgba(255, 255, 255, 0.38),
-        rgba(255, 255, 255, 0.14) 32%,
+        140px circle at var(--glow-x) var(--glow-y),
+        rgba(2, 16, 34, 0.18),
+        rgba(2, 16, 34, 0.08) 34%,
         transparent 70%
       );
     opacity: var(--glow-opacity);
-    transition: opacity 0.34s ease;
+    transition: opacity 0.12s ease;
     pointer-events: none;
     z-index: 0;
   }
@@ -291,8 +291,8 @@
     inset: 1px;
     border-radius: inherit;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 60%);
-    opacity: calc(var(--glow-opacity) * 0.72);
-    transition: opacity 0.34s ease;
+    opacity: calc(var(--glow-opacity) * 0.26);
+    transition: opacity 0.12s ease;
     pointer-events: none;
     z-index: 0;
   }
@@ -586,9 +586,10 @@
   .hero-shell {
     position: relative;
     min-height: 100svh;
+    touch-action: pan-y;
     background:
-      radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.06), transparent 32%),
-      linear-gradient(180deg, #06090d 0%, #04070a 55%, #000000 100%);
+      radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.08), transparent 30%),
+      linear-gradient(180deg, #09366f 0%, #04214a 46%, #020915 100%);
   }
 
   .hero-shell::before {
@@ -600,12 +601,12 @@
     background:
       linear-gradient(
         90deg,
-        rgba(0, 0, 0, 0.72) 0%,
-        rgba(0, 0, 0, 0.28) 8%,
-        rgba(0, 0, 0, 0) 18%,
-        rgba(0, 0, 0, 0) 82%,
-        rgba(0, 0, 0, 0.28) 92%,
-        rgba(0, 0, 0, 0.72) 100%
+        rgba(0, 0, 0, 0.42) 0%,
+        rgba(0, 0, 0, 0.14) 5%,
+        rgba(0, 0, 0, 0) 12%,
+        rgba(0, 0, 0, 0) 88%,
+        rgba(0, 0, 0, 0.14) 95%,
+        rgba(0, 0, 0, 0.42) 100%
       );
   }
 
@@ -698,6 +699,11 @@
     cursor: pointer;
     list-style: none;
     backdrop-filter: blur(12px);
+    transition:
+      background-color 0.24s ease,
+      border-color 0.24s ease,
+      box-shadow 0.24s ease,
+      transform 0.24s ease;
   }
 
   .hero-mobile-toggle::-webkit-details-marker {
@@ -715,6 +721,13 @@
     background: rgba(3, 27, 55, 0.82);
     box-shadow: 0 22px 60px rgba(3, 27, 55, 0.24);
     backdrop-filter: blur(20px);
+    opacity: 0;
+    transform: translate3d(0, -0.6rem, 0) scale(0.96);
+    transform-origin: top right;
+    pointer-events: none;
+    transition:
+      opacity 0.22s ease,
+      transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .hero-mobile-link {
@@ -724,11 +737,46 @@
     color: rgba(255, 255, 255, 0.84);
     text-decoration: none;
     transition: background-color 0.22s ease, color 0.22s ease;
+    opacity: 0;
+    transform: translate3d(0, 0.55rem, 0);
   }
 
   .hero-mobile-link:hover {
     background: rgba(255, 255, 255, 0.08);
     color: #ffffff;
+  }
+
+  .hero-mobile-cta {
+    opacity: 0;
+    transform: translate3d(0, 0.55rem, 0);
+  }
+
+  .hero-mobile-nav[open] .hero-mobile-toggle {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+    transform: translate3d(0, 0, 0) scale(0.98);
+  }
+
+  .hero-mobile-nav[open] .hero-mobile-toggle svg {
+    transform: rotate(90deg) scale(0.92);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hero-mobile-toggle svg {
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hero-mobile-nav[open] .hero-mobile-panel {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    pointer-events: auto;
+  }
+
+  .hero-mobile-nav[open] .hero-mobile-link,
+  .hero-mobile-nav[open] .hero-mobile-cta {
+    animation: hero-mobile-item-in 0.36s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(35ms + var(--menu-item-index, 0) * 45ms);
   }
 
   .hero-content {
@@ -826,12 +874,12 @@
     background:
       radial-gradient(
         160px circle at var(--glow-x) var(--glow-y),
-        rgba(255, 255, 255, 0.3),
-        rgba(255, 255, 255, 0.12) 36%,
+        rgba(2, 16, 34, 0.18),
+        rgba(2, 16, 34, 0.08) 34%,
         transparent 72%
       );
-    opacity: calc(var(--glow-opacity) * 0.95);
-    transition: opacity 0.34s ease;
+    opacity: calc(var(--glow-opacity) * 0.72);
+    transition: opacity 0.14s ease;
     pointer-events: none;
     z-index: 0;
   }
@@ -1366,6 +1414,17 @@
     }
   }
 
+  @keyframes hero-mobile-item-in {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 0.7rem, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
   @keyframes trust-scene-cycle {
     0% {
       opacity: 0;
@@ -1448,6 +1507,19 @@
       font-size: clamp(2.45rem, 11vw, 4.4rem);
     }
 
+    .hero-shell::before {
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.2) 0%,
+          rgba(0, 0, 0, 0.06) 3%,
+          rgba(0, 0, 0, 0) 8%,
+          rgba(0, 0, 0, 0) 92%,
+          rgba(0, 0, 0, 0.06) 97%,
+          rgba(0, 0, 0, 0.2) 100%
+        );
+    }
+
     .how-phone-phase {
       grid-template-columns: minmax(0, 1fr) minmax(152px, 42vw);
       gap: 1rem;
@@ -1468,13 +1540,20 @@
     }
 
     .site-footer {
+      position: relative;
+      bottom: auto;
+      overflow: visible;
+      margin-top: -2rem;
+      padding-top: 2rem;
       border-top-left-radius: 1.8rem;
       border-top-right-radius: 1.8rem;
     }
 
     .site-footer-inner {
-      min-height: max(100svh, 48rem);
-      padding-top: 4.5rem;
+      min-height: auto;
+      display: block;
+      padding-top: 3.6rem;
+      padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
     }
   }
 
@@ -1527,9 +1606,23 @@
     }
 
     .phone-shot,
-    .phone-shot.is-active {
+    .phone-shot.is-active,
+    .hero-mobile-panel,
+    .hero-mobile-toggle,
+    .hero-mobile-toggle svg,
+    .hero-mobile-link,
+    .hero-mobile-cta {
       transition: none;
     }
+
+    .hero-mobile-link,
+    .hero-mobile-cta {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+
+    .how-phone-phase,
 
     .how-phone-phase,
     .faq-answer-wrap,

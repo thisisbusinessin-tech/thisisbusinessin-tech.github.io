@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 
-const EASE = 0.38;
-const MIN_DELTA = 2.4;
+const EASE = 0.62;
+const MIN_DELTA = 0.8;
 
 function getScrollableAncestor(start: EventTarget | null) {
   let node = start instanceof HTMLElement ? start : null;
@@ -86,7 +86,7 @@ export function DesktopSmoothScroll() {
       event.preventDefault();
 
       const maxScroll = scroller.scrollHeight - window.innerHeight;
-      currentTarget = Math.min(maxScroll, Math.max(0, currentTarget + event.deltaY));
+      currentTarget = Math.min(maxScroll, Math.max(0, window.scrollY + event.deltaY * 1.02));
 
       if (!rafId) {
         rafId = window.requestAnimationFrame(animate);
