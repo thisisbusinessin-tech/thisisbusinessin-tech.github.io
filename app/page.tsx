@@ -4,12 +4,14 @@ import { siteConfig } from "@/lib/config/site";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HowItWorksShowcase } from "@/components/home/HowItWorksShowcase";
 import { TrustScenes } from "@/components/home/TrustScenes";
+import { StitchedSeamDivider } from "@/components/home/StitchedSeamDivider";
+import { FaqSeamDivider } from "@/components/home/FaqSeamDivider";
 import { FaqAccordionItem } from "@/components/ui/FaqAccordionItem";
 import { Reveal } from "@/components/ui/Reveal";
 import { faqs } from "@/content/faqs";
 
 export const metadata = createMetadata({
-  title: "ApneTailor — Tailoring Made Easy",
+  title: "ApneTailor — Online Tailoring App",
   description: siteConfig.defaultMetadata.defaultDescription,
   path: "/"
 });
@@ -23,7 +25,7 @@ export default function HomePage() {
   const marqueeGroups = Array.from({ length: 4 }, (_, index) => index);
   const processSteps = [
     {
-      title: "Choose Garment"
+      title: "Choose Garment Type"
     },
     {
       title: "Share Tailoring Details"
@@ -32,7 +34,7 @@ export default function HomePage() {
       title: "Choose Address & Schedule"
     },
     {
-      title: "Confirm Order"
+      title: "Confirm Your Order"
     }
   ];
   const howItWorksScreens = processSteps.map((step, index) => ({
@@ -44,7 +46,7 @@ export default function HomePage() {
     <>
       <HomeHero />
 
-      <section className="fabric-sheet relative z-20 -mt-[56svh] rounded-t-[2.6rem] bg-white section-padding md:rounded-t-[3.4rem]">
+      <section className="fabric-sheet relative z-20 -mt-[100svh] rounded-t-[2.6rem] bg-white section-padding md:rounded-t-[3.4rem]">
         <div className="container-site">
           <Reveal className="mx-auto max-w-4xl text-center">
             <blockquote className="fabric-quote mt-6">
@@ -56,7 +58,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="overflow-hidden bg-brand-900 py-8" aria-label="Supported garments">
+      <section className="relative z-10 overflow-hidden bg-brand-900 py-8" aria-label="Supported garments">
         <div className="marquee-track text-sm font-semibold uppercase tracking-[0.18em] text-white/88">
           {marqueeGroups.map((groupIndex) => (
             <div
@@ -77,11 +79,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="how-it-works" className="section-padding bg-white">
+      <section id="how-it-works" className="relative z-10 section-padding bg-white">
         <div className="container-site">
           <HowItWorksShowcase steps={howItWorksScreens} />
         </div>
       </section>
+
+      <StitchedSeamDivider />
 
       <section className="trust-shell section-padding bg-brand-900 text-white">
         <div className="container-site">
@@ -89,13 +93,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-neutral-50 py-10 md:py-12">
+      <section className="bg-brand-900 pb-8 pt-2 md:pb-10">
         <div className="container-site">
-          <p className="founder-line text-center text-brand-800">
+          <p className="founder-line text-center text-white/60">
             Founded by Pushpit Trehan &amp; Yugank Trehan
           </p>
         </div>
       </section>
+
+      <FaqSeamDivider />
 
       <section className="section-padding">
         <div className="container-site max-w-3xl">

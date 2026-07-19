@@ -54,7 +54,7 @@ export const siteConfig = {
   },
   defaultMetadata: {
     titleTemplate: "%s | ApneTailor",
-    defaultTitle: "ApneTailor — Custom Tailoring at Your Doorstep",
+    defaultTitle: "ApneTailor — Online Tailoring App",
     defaultDescription:
       "Get clothes custom-stitched from home. Connect with verified local tailors, track your order, and enjoy doorstep pickup and delivery with ApneTailor."
   }

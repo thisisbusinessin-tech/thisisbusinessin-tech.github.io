@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 interface HowItWorksStep {
   title: string;
@@ -13,49 +13,133 @@ interface HowItWorksShowcaseProps {
 }
 
 export function HowItWorksShowcase({ steps }: HowItWorksShowcaseProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const stepRefs = useRef<Array<HTMLElement | null>>([]);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const rafRef = useRef<number>(0);
+  const progressRef = useRef(0);
+
+  const maxProgress = Math.max(steps.length - 1, 1);
+
+  const readProgress = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const rect = track.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const totalTravel = Math.max(rect.height - vh, 1);
+    const traveled = Math.max(0, Math.min(totalTravel, -rect.top));
+    progressRef.current = (traveled / totalTravel) * maxProgress;
+  }, [maxProgress]);
+
+  const applyProgress = useCallback(() => {
+    const raw = progressRef.current;
+    setScrollProgress(raw);
+  }, []);
 
   useEffect(() => {
-    const nodes = stepRefs.current.filter(Boolean);
-    if (!nodes.length) return;
+    const onScroll = () => {
+      readProgress();
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(applyProgress);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    readProgress();
+    applyProgress();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(rafRef.current);
+    };
+  }, [readProgress, applyProgress]);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((left, right) => right.intersectionRatio - left.intersectionRatio);
+  const easeOut = (value: number) => 1 - Math.pow(1 - value, 3);
+  const currentStep = Math.min(steps.length - 1, Math.floor(scrollProgress));
+  const segmentProgress = scrollProgress - currentStep;
+  const displayIndex =
+    currentStep < steps.length - 1 && segmentProgress >= 0.8 ? currentStep + 1 : currentStep;
 
-        if (visible[0]) {
-          const nextIndex = Number(visible[0].target.getAttribute("data-step-index"));
-          if (!Number.isNaN(nextIndex)) {
-            setActiveIndex(nextIndex);
-          }
-        }
-      },
-      {
-        threshold: [0.22, 0.45, 0.65],
-        rootMargin: "-30% 0px -30% 0px"
+  const getStepStyle = (idx: number): { opacity: number; blur: number; translateY: number } => {
+    if (steps.length === 1) {
+      return { opacity: 1, blur: 0, translateY: 0 };
+    }
+
+    if (idx === steps.length - 1) {
+      const distance = scrollProgress - idx;
+      if (distance <= 0) {
+        const enter = Math.max(0, Math.min(1, (scrollProgress - (idx - 0.38)) / 0.38));
+        const eased = easeOut(enter);
+        return {
+          opacity: eased,
+          blur: (1 - eased) * 12,
+          translateY: (1 - eased) * 22
+        };
       }
-    );
 
-    nodes.forEach((node) => observer.observe(node!));
-    return () => observer.disconnect();
-  }, [steps]);
+      return { opacity: 1, blur: 0, translateY: 0 };
+    }
 
-  const currentStep = steps[activeIndex] ?? steps[0];
+    const baseIndex = Math.floor(scrollProgress);
+    if (baseIndex === idx) {
+      const segmentProgress = scrollProgress - idx;
+      if (segmentProgress <= 0.62) {
+        return { opacity: 1, blur: 0, translateY: 0 };
+      }
+
+      const transition = easeOut((segmentProgress - 0.62) / 0.38);
+      return {
+        opacity: 1 - transition,
+        blur: transition * 10,
+        translateY: -transition * 26
+      };
+    }
+
+    if (baseIndex + 1 === idx) {
+      const segmentProgress = scrollProgress - baseIndex;
+      if (segmentProgress <= 0.62) {
+        return { opacity: 0, blur: 12, translateY: 22 };
+      }
+
+      const transition = easeOut((segmentProgress - 0.62) / 0.38);
+      return {
+        opacity: transition,
+        blur: (1 - transition) * 12,
+        translateY: (1 - transition) * 22
+      };
+    }
+
+    if (idx < baseIndex) {
+      return { opacity: 0, blur: 10, translateY: -26 };
+    }
+
+    return { opacity: 0, blur: 12, translateY: 22 };
+  };
+
+  const activeIndex = Math.min(steps.length - 1, Math.round(displayIndex));
 
   return (
     <div className="how-sequence">
       <div className="how-sequence-sticky">
         <div className="how-phone-phase is-visible">
           <div className="how-step-panel">
-            <article key={currentStep.screenshot} className="how-step-spotlight">
-              <p className="how-step-kicker">How It Works</p>
-              <h2 className="how-step-heading">How It Works</h2>
-              <p className="how-step-label">Step {activeIndex + 1}</p>
-              <h3>{currentStep.title}</h3>
-            </article>
+            <div className="how-step-text-stack">
+              {steps.map((step, idx) => {
+                const { opacity, blur, translateY } = getStepStyle(idx);
+                return (
+                  <article
+                    key={step.title}
+                    className="how-step-spotlight"
+                    aria-hidden={idx !== activeIndex}
+                    style={{
+                      opacity,
+                      filter: blur > 0.3 ? `blur(${blur.toFixed(1)}px)` : "none",
+                      transform: `translate3d(0, ${translateY.toFixed(1)}px, 0)`,
+                      pointerEvents: idx === activeIndex ? "auto" : "none",
+                    }}
+                  >
+                    <p className="how-step-label">Step {idx + 1}</p>
+                    <h2 className="how-step-spotlight-title">{step.title}</h2>
+                  </article>
+                );
+              })}
+            </div>
           </div>
 
           <div className="phone-stage">
@@ -65,11 +149,11 @@ export function HowItWorksShowcase({ steps }: HowItWorksShowcaseProps) {
                 {steps.map((step, index) => (
                   <div
                     key={step.screenshot}
-                    className={`phone-shot ${activeIndex === index ? "is-active" : ""}`}
+                    className={`phone-shot ${displayIndex === index ? "is-active" : ""}`}
                   >
                     <Image
                       src={step.screenshot}
-                      alt={`${step.title} app screen`}
+                      alt={`Step ${index + 1}: ${step.title} app screen`}
                       fill
                       priority={index === 0}
                       sizes="(max-width: 768px) 42vw, (max-width: 1024px) 34vw, 28rem"
@@ -83,16 +167,9 @@ export function HowItWorksShowcase({ steps }: HowItWorksShowcaseProps) {
         </div>
       </div>
 
-      <div className="how-sequence-track" aria-hidden="true">
+      <div ref={trackRef} className="how-sequence-track" aria-hidden="true">
         {steps.map((step, index) => (
-          <section
-            key={step.title}
-            ref={(node) => {
-              stepRefs.current[index] = node;
-            }}
-            data-step-index={index}
-            className="how-scroll-step"
-          />
+          <div key={step.title} data-step-index={index} className="how-scroll-step" />
         ))}
       </div>
     </div>

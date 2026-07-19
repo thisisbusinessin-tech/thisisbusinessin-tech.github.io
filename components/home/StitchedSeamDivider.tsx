@@ -1,41 +1,30 @@
 export function StitchedSeamDivider() {
   return (
-    <div className="stitched-seam" aria-hidden="true">
-      <svg viewBox="0 0 1440 72" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="stitch-seam-crease" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="rgba(2, 16, 34, 0.18)" />
-            <stop offset="48%" stopColor="rgba(5, 18, 38, 0.88)" />
-            <stop offset="52%" stopColor="rgba(3, 12, 28, 0.96)" />
-            <stop offset="100%" stopColor="rgba(2, 16, 34, 0.18)" />
-          </linearGradient>
-        </defs>
+    <div className="stitched-seam" aria-hidden="true" role="separator">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,0 H1440 V40 Q1080,22 720,40 Q360,58 0,40 Z" fill="#ffffff" />
+        <path d="M0,40 Q360,58 720,40 T1440,40 V80 H0 Z" fill="#031b37" />
 
+        {/* Top thread — dark blue (leaving white how-it-works section above) */}
         <path
-          d="M0,36 C140,18 260,18 400,36 C540,54 660,54 800,36 C940,18 1060,18 1200,36 C1280,46 1360,46 1440,36"
+          d="M0,31 Q360,49 720,31 T1440,31"
           fill="none"
-          stroke="url(#stitch-seam-crease)"
-          strokeWidth="18"
+          stroke="#022d5d"
+          strokeWidth="2"
+          strokeDasharray="8 10"
           strokeLinecap="round"
-          strokeLinejoin="round"
+          vectorEffect="non-scaling-stroke"
         />
 
+        {/* Bottom thread — white (entering brand-900 trust section below) */}
         <path
-          d="M0,27 C140,9 260,9 400,27 C540,45 660,45 800,27 C940,9 1060,9 1200,27 C1280,37 1360,37 1440,27"
+          d="M0,49 Q360,67 720,49 T1440,49"
           fill="none"
-          stroke="rgba(255,255,255,0.82)"
-          strokeWidth="2.2"
-          strokeDasharray="6 7"
+          stroke="rgba(255,255,255,0.80)"
+          strokeWidth="2"
+          strokeDasharray="8 10"
           strokeLinecap="round"
-        />
-
-        <path
-          d="M0,45 C140,27 260,27 400,45 C540,63 660,63 800,45 C940,27 1060,27 1200,45 C1280,55 1360,55 1440,45"
-          fill="none"
-          stroke="rgba(255,255,255,0.82)"
-          strokeWidth="2.2"
-          strokeDasharray="6 7"
-          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
         />
       </svg>
     </div>
