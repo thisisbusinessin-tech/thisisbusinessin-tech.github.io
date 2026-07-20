@@ -75,56 +75,68 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
 
     // Physics constants — tuned for visible interaction with a lighter desktop cost
     let cols = 24;
-    const EXTRA_SAG_ROWS = 4;
+    const EXTRA_SAG_ROWS = 6;
     const GRAVITY = 1680;
     const HOVER_RADIUS_RATIO = 0.19;
     const HOVER_STRENGTH = 0.13;
     const MAX_HOVER_DELTA = 20;
     const SINK_STRENGTH = 1850;
-    const WIND_STRENGTH = 20;
+    const WIND_STRENGTH = 14;
     const EDGE_WIND_BOOST = 1.6;
     const PHYSICS_PASSES = 2;
     const DAMPING = 0.986;
     const SETTLE_STEPS = 120;
     const LIGHT_SCALE = 0.78;
     const MAX_VELOCITY = 24;
+    const HEADLINE_LOCK_X_RATIO = 0.24;
+    const HEADLINE_LOCK_Y_RATIO = 0.2;
 
     const buildWeavePattern = () => {
       const tile = document.createElement("canvas");
-      tile.width = 34;
-      tile.height = 34;
+      tile.width = 46;
+      tile.height = 46;
 
       const tileContext = tile.getContext("2d");
       if (!tileContext) return null;
 
       tileContext.clearRect(0, 0, tile.width, tile.height);
-      tileContext.fillStyle = "rgba(255, 255, 255, 0.012)";
+      tileContext.fillStyle = "rgba(255, 255, 255, 0.024)";
       tileContext.fillRect(0, 0, tile.width, tile.height);
 
-      tileContext.strokeStyle = "rgba(255, 255, 255, 0.07)";
-      tileContext.lineWidth = 1;
+      tileContext.strokeStyle = "rgba(255, 255, 255, 0.12)";
+      tileContext.lineWidth = 1.15;
 
-      for (let offset = 4.5; offset < tile.width; offset += 6) {
+      for (let offset = 5; offset < tile.width; offset += 7) {
         tileContext.beginPath();
         tileContext.moveTo(offset, 0);
         tileContext.lineTo(offset, tile.height);
         tileContext.stroke();
       }
 
-      tileContext.strokeStyle = "rgba(255, 255, 255, 0.045)";
-      for (let offset = 4.5; offset < tile.height; offset += 6) {
+      tileContext.strokeStyle = "rgba(255, 255, 255, 0.08)";
+      tileContext.lineWidth = 0.95;
+      for (let offset = 5; offset < tile.height; offset += 7) {
         tileContext.beginPath();
         tileContext.moveTo(0, offset);
         tileContext.lineTo(tile.width, offset);
         tileContext.stroke();
       }
 
-      tileContext.strokeStyle = "rgba(2, 16, 34, 0.12)";
+      tileContext.strokeStyle = "rgba(6, 31, 65, 0.14)";
       tileContext.lineWidth = 0.8;
-      for (let offset = -tile.height; offset < tile.width * 2; offset += 11) {
+      for (let offset = -tile.height; offset < tile.width * 2; offset += 14) {
         tileContext.beginPath();
         tileContext.moveTo(offset, 0);
         tileContext.lineTo(offset - tile.height, tile.height);
+        tileContext.stroke();
+      }
+
+      tileContext.strokeStyle = "rgba(255, 255, 255, 0.055)";
+      tileContext.lineWidth = 1.6;
+      for (let offset = 10; offset < tile.width; offset += 18) {
+        tileContext.beginPath();
+        tileContext.moveTo(offset, 0);
+        tileContext.lineTo(offset, tile.height);
         tileContext.stroke();
       }
 
@@ -143,9 +155,9 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
       ctx.clearRect(0, 0, width, height);
 
       const baseGradient = ctx.createLinearGradient(0, 0, 0, height);
-      baseGradient.addColorStop(0, "#03122a");
-      baseGradient.addColorStop(0.5, "#020a18");
-      baseGradient.addColorStop(1, "#000000");
+      baseGradient.addColorStop(0, "#ffffff");
+      baseGradient.addColorStop(0.52, "#f5f9ff");
+      baseGradient.addColorStop(1, "#edf4ff");
       ctx.fillStyle = baseGradient;
       ctx.fillRect(0, 0, width, height);
 
@@ -157,16 +169,16 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
         height * 0.08,
         width * 0.9
       );
-      upperWash.addColorStop(0, "rgba(255, 255, 255, 0.08)");
+      upperWash.addColorStop(0, "rgba(118, 170, 255, 0.12)");
       upperWash.addColorStop(1, "rgba(255, 255, 255, 0)");
       ctx.fillStyle = upperWash;
       ctx.fillRect(0, 0, width, height);
 
       const edgeShade = ctx.createLinearGradient(0, 0, width, 0);
-      edgeShade.addColorStop(0, "rgba(0, 0, 0, 0.55)");
-      edgeShade.addColorStop(0.12, "rgba(0, 0, 0, 0)");
-      edgeShade.addColorStop(0.88, "rgba(0, 0, 0, 0)");
-      edgeShade.addColorStop(1, "rgba(0, 0, 0, 0.55)");
+      edgeShade.addColorStop(0, "rgba(255, 255, 255, 0.96)");
+      edgeShade.addColorStop(0.1, "rgba(255, 255, 255, 0)");
+      edgeShade.addColorStop(0.9, "rgba(255, 255, 255, 0)");
+      edgeShade.addColorStop(1, "rgba(255, 255, 255, 0.96)");
       ctx.fillStyle = edgeShade;
       ctx.fillRect(0, 0, width, height);
     };
@@ -184,11 +196,12 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
       canvas.style.height = height + "px";
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const clothWidthRatio = width >= 1280 ? 1.04 : width >= 1024 ? 1.08 : 1.16;
+      const clothWidthRatio = width >= 1280 ? 1.12 : width >= 1024 ? 1.16 : width >= 768 ? 1.2 : 1.24;
       const clothWidth = width * clothWidthRatio;
       const startX = -(clothWidth - width) / 2;
+      const startY = -Math.max(18, height * 0.025);
       spacing = clothWidth / cols;
-      rows = Math.min(Math.ceil(height / spacing) + EXTRA_SAG_ROWS, 28);
+      rows = Math.min(Math.ceil((height - startY) / spacing) + EXTRA_SAG_ROWS, 30);
 
       points = [];
       constraints = [];
@@ -197,7 +210,7 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
       for (let y = 0; y <= rows; y++) {
         for (let x = 0; x <= cols; x++) {
           const px = startX + x * spacing;
-          const py = y * spacing;
+          const py = startY + y * spacing;
           const pinned = y === 0; // top row only — rest sag under gravity
 
           points.push({
@@ -258,8 +271,8 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
         if (!isHovering) {
           const edgeT = Math.abs((p.x - width / 2) / (width / 2));
           const edgeBoost = 1 + edgeT * (EDGE_WIND_BOOST - 1);
-          ax += Math.sin(elapsed * 0.6 + p.x * 0.042 + p.y * 0.01) * WIND_STRENGTH * edgeBoost;
-          ay += Math.cos(elapsed * 0.42 + p.y * 0.03) * WIND_STRENGTH * 0.28;
+          ax += Math.sin(elapsed * 0.42 + p.x * 0.034 + p.y * 0.008) * WIND_STRENGTH * edgeBoost;
+          ay += Math.cos(elapsed * 0.34 + p.y * 0.024) * WIND_STRENGTH * 0.24;
         }
 
         // Cursor interaction
@@ -286,6 +299,21 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
             ax += (-dx / dist) * pull;
             ay += (-dy / dist) * pull;
           }
+        }
+
+        const headlineCenterX = width / 2;
+        const headlineCenterY = height * 0.54;
+        const headlineZoneX = width * HEADLINE_LOCK_X_RATIO;
+        const headlineZoneY = height * HEADLINE_LOCK_Y_RATIO;
+        const centerDx = Math.abs(p.restX - headlineCenterX);
+        const centerDy = Math.abs(p.restY - headlineCenterY);
+
+        if (centerDx < headlineZoneX && centerDy < headlineZoneY) {
+          const zone =
+            (1 - centerDx / headlineZoneX) *
+            (1 - centerDy / headlineZoneY);
+          ax += (p.restX - p.x) * (22 * zone);
+          ay += (p.restY - p.y) * (28 * zone);
         }
 
         let vx = (p.x - p.px) * DAMPING + ax * dt * dt;
@@ -329,22 +357,6 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
         context.drawImage(backgroundCanvas, 0, 0, width, height);
       }
 
-      if (pointer.active) {
-        const hoverRadius = Math.max(100, Math.min(width, height) * HOVER_RADIUS_RATIO);
-        const pressShadow = context.createRadialGradient(
-          pointer.x + 6, pointer.y + 10, 0,
-          pointer.x + 6, pointer.y + 10, hoverRadius * 1.15
-        );
-        pressShadow.addColorStop(0, "rgba(4, 8, 16, 0.28)");
-        pressShadow.addColorStop(0.35, "rgba(4, 8, 16, 0.16)");
-        pressShadow.addColorStop(0.6, "rgba(4, 8, 16, 0.08)");
-        pressShadow.addColorStop(1, "rgba(4, 8, 16, 0)");
-        context.fillStyle = pressShadow;
-        context.beginPath();
-        context.arc(pointer.x + 6, pointer.y + 10, hoverRadius * 1.15, 0, Math.PI * 2);
-        context.fill();
-      }
-
       // Build the mesh silhouette Path2D (quads slightly overlapped to hide seams)
       const QUAD_OVERLAP = 1.032;
       const meshPath = new Path2D();
@@ -376,14 +388,14 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
       context.save();
       context.clip(meshPath);
       const clothGrad = context.createLinearGradient(0, 0, 0, height);
-      clothGrad.addColorStop(0, "#1260c9");
-      clothGrad.addColorStop(0.5, "#0b4d9f");
-      clothGrad.addColorStop(1, "#063672");
+      clothGrad.addColorStop(0, "#1b6ddd");
+      clothGrad.addColorStop(0.48, "#0f58b6");
+      clothGrad.addColorStop(1, "#0a3f86");
       context.fillStyle = clothGrad;
       context.fillRect(0, 0, width, height);
       // Then overlay the weave texture on top for fabric appearance
       if (weavePattern) {
-        context.globalAlpha = width >= 1024 ? 0.3 : 0.26;
+        context.globalAlpha = width >= 1024 ? 0.44 : 0.38;
         context.fillStyle = weavePattern;
         context.fillRect(0, 0, width, height);
       }
@@ -406,16 +418,17 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
         context.restore();
       }
 
-      // Cursor rim highlight
       if (pointer.active) {
         const hoverRadius = Math.max(100, Math.min(width, height) * HOVER_RADIUS_RATIO);
-        const rim = context.createRadialGradient(
-          pointer.x - 8, pointer.y - 12, 0,
-          pointer.x - 8, pointer.y - 12, hoverRadius * 0.7
+        const shadow = context.createRadialGradient(
+          pointer.x, pointer.y, 0,
+          pointer.x, pointer.y, hoverRadius * 0.92
         );
-        rim.addColorStop(0, "rgba(255,255,255,0.08)");
-        rim.addColorStop(1, "rgba(255,255,255,0)");
-        context.fillStyle = rim;
+        shadow.addColorStop(0, "rgba(6, 13, 26, 0.24)");
+        shadow.addColorStop(0.42, "rgba(6, 13, 26, 0.12)");
+        shadow.addColorStop(0.74, "rgba(6, 13, 26, 0.04)");
+        shadow.addColorStop(1, "rgba(6, 13, 26, 0)");
+        context.fillStyle = shadow;
         context.beginPath();
         context.arc(pointer.x, pointer.y, hoverRadius, 0, Math.PI * 2);
         context.fill();

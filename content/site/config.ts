@@ -15,15 +15,13 @@ export const siteConfig = {
     url: null as string | null,
     status: "placeholder" as "placeholder" | "live",
     label: "Download the ApneTailor App",
-    placeholderMessage:
-      "The app download link will be available here once the Google Play Store listing is finalized."
+    placeholderMessage: "The app download link."
   },
   tailorAppDownload: {
     url: null as string | null,
     status: "placeholder" as "placeholder" | "live",
     label: "Download the ApneTailor Tailor App",
-    placeholderMessage:
-      "Add the Tailor App download URL here when the listing is ready."
+    placeholderMessage: "The tailor app download link."
   },
   expansionWording: "ApneTailor is expanding to more cities across India.",
   socialPreview: {

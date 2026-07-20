@@ -113,7 +113,7 @@ export function HomeHero() {
             </nav>
 
             <div className="hidden lg:block">
-              <AppDownloadButton className="min-h-0 px-5 py-2.5 text-sm" />
+              <AppDownloadButton effect="white-glow" className="min-h-0 px-5 py-2.5 text-sm" />
             </div>
 
             <HeroMobileMenu className="lg:hidden" tabable={isScrolled} />
@@ -175,7 +175,7 @@ export function HomeHero() {
                     className="hero-intro-item"
                     style={{ ["--intro-delay" as string]: `${120 + heroNavLinks.length * 55}ms` }}
                   >
-                    <AppDownloadButton className="min-h-0 px-5 py-2.5 text-sm" />
+                    <AppDownloadButton effect="white-glow" className="min-h-0 px-5 py-2.5 text-sm" />
                   </div>
                 </div>
 
@@ -205,7 +205,7 @@ export function HomeHero() {
               </div>
 
               <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <AppDownloadButton />
+                <AppDownloadButton effect="emoji-peek" className="hero-primary-cta" />
                 <Link href="#how-it-works" className="btn-secondary hero-action-secondary text-white">
                   How It Works
                 </Link>
