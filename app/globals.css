@@ -197,7 +197,9 @@
     --emoji-pupil-y: 0px;
     --emoji-tilt: 0deg;
     --emoji-lift: 0px;
+    --emoji-brow-raise: 0px;
     --emoji-opacity: 0;
+    --emoji-shell-shadow: 0 18px 36px rgba(0, 72, 153, 0.22);
   }
 
   .btn-primary:hover {
@@ -205,6 +207,7 @@
     transform: translateY(-1px);
     box-shadow: 0 22px 44px rgba(0, 72, 153, 0.28);
     filter: saturate(1.05);
+    --emoji-shell-shadow: 0 22px 44px rgba(0, 72, 153, 0.28);
   }
 
   .btn-primary:active {
@@ -245,7 +248,9 @@
     --emoji-pupil-y: 0px;
     --emoji-tilt: 0deg;
     --emoji-lift: 0px;
+    --emoji-brow-raise: 0px;
     --emoji-opacity: 0;
+    --emoji-shell-shadow: 0 14px 28px rgba(5, 35, 69, 0.1);
   }
 
   .btn-secondary:hover {
@@ -311,19 +316,27 @@
 
   .button-label {
     position: relative;
-    z-index: 2;
+    z-index: 3;
   }
 
   .emoji-peek-button {
     overflow: visible;
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  .emoji-peek-button:hover,
+  .emoji-peek-button:active {
+    box-shadow: none;
   }
 
   .emoji-peek-face {
     position: absolute;
     left: 50%;
-    top: 0.52rem;
-    width: 2.6rem;
-    height: 2.6rem;
+    top: 0.28rem;
+    width: 2.7rem;
+    height: 2.7rem;
     border-radius: 999px;
     background:
       radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.55), transparent 18%),
@@ -332,39 +345,41 @@
     box-shadow:
       0 10px 24px rgba(5, 35, 69, 0.18),
       inset 0 1px 0 rgba(255, 255, 255, 0.42);
-    opacity: var(--emoji-opacity);
-    transform: translate3d(-50%, calc(18% - var(--emoji-lift)), 0) rotate(var(--emoji-tilt));
+    opacity: var(--emoji-opacity, 0);
+    transform: translate3d(-50%, calc(8% - var(--emoji-lift, 0px)), 0) rotate(var(--emoji-tilt, 0deg));
     transition:
       opacity 0.22s ease,
       transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
     will-change: transform, opacity;
   }
 
   .emoji-peek-brows {
     position: absolute;
     left: 50%;
-    top: 0.7rem;
+    top: 0.90rem;
     display: flex;
-    gap: 0.34rem;
-    transform: translateX(-50%);
+    gap: 0.38rem;
+    transform: translate3d(-50%, calc(var(--emoji-brow-raise, 0px) * -1), 0);
+    transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .emoji-peek-brow {
-    width: 0.62rem;
-    height: 0.14rem;
-    border-radius: 999px;
-    background: rgba(104, 63, 0, 0.58);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+    width: 0.72rem;
+    height: 0.26rem;
+    border-top: 0.15rem solid rgba(104, 63, 0, 0.72);
+    border-radius: 999px 999px 0 0;
+    background: transparent;
+    opacity: 0.96;
   }
 
   .emoji-peek-brow-left {
-    transform: rotate(-14deg);
+    transform: rotate(-20deg);
   }
 
   .emoji-peek-brow-right {
-    transform: rotate(14deg);
+    transform: rotate(20deg);
   }
 
   .emoji-peek-eyes {
@@ -378,8 +393,8 @@
 
   .emoji-peek-eye {
     position: relative;
-    width: 0.52rem;
-    height: 0.64rem;
+    width: 0.80rem;;
+    height: 0.90rem;
     border-radius: 999px;
     background: #ffffff;
     box-shadow: inset 0 1px 2px rgba(5, 35, 69, 0.12);
@@ -390,8 +405,8 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 0.22rem;
-    height: 0.22rem;
+    width: 0.34rem;
+    height: 0.34rem;
     border-radius: 999px;
     background: #13263f;
     transform: translate3d(calc(-50% + var(--emoji-pupil-x)), calc(-50% + var(--emoji-pupil-y)), 0);
@@ -402,14 +417,20 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     background:
       linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0)),
       linear-gradient(135deg, var(--color-brand-500), var(--color-brand-600));
     box-shadow:
+      var(--emoji-shell-shadow),
       inset 0 1px 0 rgba(255, 255, 255, 0.14),
       inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+    transition:
+      box-shadow 0.26s ease,
+      border-color 0.26s ease,
+      background 0.26s ease;
     pointer-events: none;
-    z-index: 1;
+    z-index: 2;
   }
 
   .marquee-track {

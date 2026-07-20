@@ -5,6 +5,18 @@ import { siteConfig } from "@/lib/config/site";
 
 type AppButtonKind = "user" | "tailor";
 
+const EMOJI_PUPIL_X_RANGE = 8.5;
+const EMOJI_PUPIL_Y_RANGE = 4.5;
+const EMOJI_TILT_RANGE = 7;
+const EMOJI_BASE_LIFT = 34;
+const EMOJI_LIFT_RANGE = 8;
+const EMOJI_BROW_BASE_RAISE = 3;
+const EMOJI_BROW_RAISE_RANGE = 4;
+const EMOJI_ANCHOR_Y_RATIO = -0.08;
+const EMOJI_DOWNWARD_LOOK_FLOOR = 0.52;
+
+const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+
 interface AppDownloadButtonProps {
   className?: string;
   variant?: "primary" | "secondary";
@@ -56,16 +68,25 @@ export function AppDownloadButton({
     }
 
     if (effect === "emoji-peek") {
-      const xRatio = rect.width > 0 ? nextX / rect.width : 0.5;
-      const yRatio = rect.height > 0 ? nextY / rect.height : 0.5;
-      const pupilX = (xRatio - 0.5) * 8.5;
-      const pupilY = (yRatio - 0.5) * 4.5;
-      const faceTilt = (xRatio - 0.5) * 7;
-      const faceLift = 26 + (0.5 - Math.abs(yRatio - 0.5)) * 7;
+      const anchorX = rect.width / 2;
+      const anchorY = rect.height * EMOJI_ANCHOR_Y_RATIO;
+      const normalizedX = clamp((nextX - anchorX) / Math.max(rect.width * 0.5, 1), -1, 1);
+      const normalizedY = clamp(
+        (nextY - anchorY) / Math.max(rect.height * 0.82, 1),
+        EMOJI_DOWNWARD_LOOK_FLOOR,
+        1
+      );
+      const horizontalCalm = 1 - Math.min(Math.abs(normalizedX), 1) * 0.4;
+      const pupilX = clamp(normalizedX * EMOJI_PUPIL_X_RANGE, -5, 5);
+      const pupilY = clamp(normalizedY * EMOJI_PUPIL_Y_RANGE, -3, 3);
+      const faceTilt = normalizedX * EMOJI_TILT_RANGE;
+      const faceLift = EMOJI_BASE_LIFT + horizontalCalm * EMOJI_LIFT_RANGE;
+      const browRaise = EMOJI_BROW_BASE_RAISE + horizontalCalm * EMOJI_BROW_RAISE_RANGE;
       node.style.setProperty("--emoji-pupil-x", `${pupilX.toFixed(2)}px`);
       node.style.setProperty("--emoji-pupil-y", `${pupilY.toFixed(2)}px`);
       node.style.setProperty("--emoji-tilt", `${faceTilt.toFixed(2)}deg`);
       node.style.setProperty("--emoji-lift", `${faceLift.toFixed(2)}px`);
+      node.style.setProperty("--emoji-brow-raise", `${browRaise.toFixed(2)}px`);
       node.style.setProperty("--emoji-opacity", "1");
     }
   };
@@ -85,6 +106,7 @@ export function AppDownloadButton({
       node.style.setProperty("--emoji-pupil-y", "0px");
       node.style.setProperty("--emoji-tilt", "0deg");
       node.style.setProperty("--emoji-lift", "0px");
+      node.style.setProperty("--emoji-brow-raise", "0px");
     }
   };
 

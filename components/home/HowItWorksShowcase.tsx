@@ -12,6 +12,10 @@ interface HowItWorksShowcaseProps {
   steps: HowItWorksStep[];
 }
 
+const FIRST_STEP_SCROLL_SPAN = 0.58;
+const STANDARD_STEP_SCROLL_SPAN = 1;
+const DISPLAY_ADVANCE_THRESHOLD = 0.8;
+
 export function HowItWorksShowcase({ steps }: HowItWorksShowcaseProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -32,8 +36,23 @@ export function HowItWorksShowcase({ steps }: HowItWorksShowcaseProps) {
 
   const applyProgress = useCallback(() => {
     const raw = progressRef.current;
-    setScrollProgress(raw);
-  }, []);
+    const spans = Array.from({ length: maxProgress }, (_, index) =>
+      index === 0 && maxProgress > 1 ? FIRST_STEP_SCROLL_SPAN : STANDARD_STEP_SCROLL_SPAN
+    );
+    let segmentStart = 0;
+
+    for (const [index, span] of spans.entries()) {
+      const segmentEnd = segmentStart + span;
+      if (raw <= segmentEnd) {
+        setScrollProgress(index + (raw - segmentStart) / span);
+        return;
+      }
+
+      segmentStart = segmentEnd;
+    }
+
+    setScrollProgress(maxProgress);
+  }, [maxProgress]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -54,7 +73,9 @@ export function HowItWorksShowcase({ steps }: HowItWorksShowcaseProps) {
   const currentStep = Math.min(steps.length - 1, Math.floor(scrollProgress));
   const segmentProgress = scrollProgress - currentStep;
   const displayIndex =
-    currentStep < steps.length - 1 && segmentProgress >= 0.8 ? currentStep + 1 : currentStep;
+    currentStep < steps.length - 1 && segmentProgress >= DISPLAY_ADVANCE_THRESHOLD
+      ? currentStep + 1
+      : currentStep;
 
   const getStepStyle = (idx: number): { opacity: number; blur: number; translateY: number } => {
     if (steps.length === 1) {
