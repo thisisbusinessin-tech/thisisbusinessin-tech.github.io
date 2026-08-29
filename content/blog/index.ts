@@ -55,7 +55,7 @@ const articles: Article[] = [
         items: [
           "No need to visit multiple tailors in person",
           "Measurements and requirements captured digitally",
-          "Transparent pricing before you commit",
+          "Transparent pricing and delivery date before you commit",
           "Doorstep pickup and delivery",
           "Progress visibility during stitching",
           "Ability to request changes before final delivery"
@@ -82,7 +82,7 @@ const articles: Article[] = [
       },
       {
         question: "How long does home stitching take?",
-        answer: "Timelines vary by garment complexity and tailor availability. Tailors typically provide an expected completion date when they accept your order, usually ranging from 7 to 14 days depending on the garment."
+        answer: "Timelines vary by garment complexity and tailor availability. Tailors typically provide an expected completion date when they accept your order, ranging within 1-7 days for basic garments or within 7-14 days for complex garments."
       }
     ],
     tldr: "Getting clothes stitched from home involves using an online tailoring app to provide measurements, design details, and location. A nearby tailor accepts your order, stitches the garment, and delivers it to your doorstep. Platforms like ApneTailor handle pickup, progress tracking, and communication throughout the process.",

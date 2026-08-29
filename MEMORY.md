@@ -967,7 +967,7 @@ Place your tailoring order without leaving home in under 10 minutes. We handle p
 
 
 
-Work with registered tailors who can review your requirements, provide transparent pricing and an estimated delivery date, and complete your stitching professionally.
+Work with registered tailors who can review your requirements, provide transparent pricing and a planned delivery date, and complete your stitching professionally.
 
 
 

@@ -32,7 +32,7 @@ export default function SupportPage() {
           <div className="card">
             <h2 className="text-xl mb-3">Account and privacy</h2>
             <p className="text-neutral-600">
-              For account deletion requests, visit our{" "}
+              For account deletion information, visit our{" "}
               <Link href="/delete-accounts/">Account Deletion</Link> page. For privacy questions,
               see our <Link href="/privacy-policy/">Privacy Policy</Link> and{" "}
               <Link href="/data-compliance/">Data Compliance</Link> page.

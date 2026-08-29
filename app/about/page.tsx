@@ -31,8 +31,8 @@ export default function AboutPage() {
           </p>
           <p>
             ApneTailor brings the entire tailoring experience online. You place a stitching order
-            from home, connect with skilled local tailors, track every stage, and receive your
-            finished garment at your doorstep.
+            from home, connect with skilled local tailors, get planned delivery date, track every stage,
+            and receive your finished garment at your doorstep.
           </p>
 
           <h2>What we offer</h2>
