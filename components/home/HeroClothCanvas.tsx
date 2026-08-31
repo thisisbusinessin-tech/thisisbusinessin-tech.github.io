@@ -424,9 +424,9 @@ export function HeroClothCanvas({ children, className = "" }: HeroClothCanvasPro
           pointer.x, pointer.y, 0,
           pointer.x, pointer.y, hoverRadius * 0.92
         );
-        shadow.addColorStop(0, "rgba(6, 13, 26, 0.24)");
-        shadow.addColorStop(0.42, "rgba(6, 13, 26, 0.12)");
-        shadow.addColorStop(0.74, "rgba(6, 13, 26, 0.04)");
+        shadow.addColorStop(0, "rgba(6, 13, 26, 0.06)");
+        shadow.addColorStop(0.42, "rgba(6, 13, 26, 0.03)");
+        shadow.addColorStop(0.74, "rgba(6, 13, 26, 0.01)");
         shadow.addColorStop(1, "rgba(6, 13, 26, 0)");
         context.fillStyle = shadow;
         context.beginPath();

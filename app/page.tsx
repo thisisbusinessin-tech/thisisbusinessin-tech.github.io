@@ -31,7 +31,7 @@ export default function HomePage() {
       title: "Share Tailoring Details"
     },
     {
-      title: "Choose Address & Schedule"
+      title: "Give Accurate Address"
     },
     {
       title: "Confirm Your Order"

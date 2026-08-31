@@ -29,7 +29,7 @@ export function TrustScenes() {
       {trustScenes.map((scene, index) => (
         <article
           key={scene.title}
-          className="trust-scene"
+          className={`trust-scene${index === 0 ? " is-landscape" : ""}`}
           style={{ ["--scene-delay" as string]: `${index * 2}s` }}
         >
           <p className="trust-scene-title" aria-hidden="true">
@@ -42,7 +42,7 @@ export function TrustScenes() {
               alt={scene.alt}
               fill
               sizes="(max-width: 768px) 100vw, 80vw"
-              className="object-contain object-right-bottom"
+              className="trust-full-image-media"
             />
           </div>
         </article>

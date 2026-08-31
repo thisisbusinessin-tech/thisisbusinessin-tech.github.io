@@ -66,7 +66,7 @@ export default function ServicesPage() {
 
         <div className="surface-panel mt-16 p-8 text-center">
           <p className="text-neutral-600 mb-4 leading-7">
-            Alterations are not currently offered as a supported service.
+            Available on Google Play!
           </p>
           <AppDownloadButton />
         </div>

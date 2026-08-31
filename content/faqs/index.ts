@@ -13,7 +13,7 @@ const rawFaqs = [
     topic: "Garments",
     question: "Which garments does ApneTailor currently support?",
     answer:
-      "ApneTailor currently supports stitching for women's garments (Suit, Saree, Kurti, Lehenga, Blouse) and men's garments (Kurta, Formal Suit, Shirt, Sherwani, Pant). Alterations are not currently offered as a supported service."
+      "ApneTailor currently supports stitching for women's garments (Suit, Saree, Kurti, Lehenga, Blouse) and men's garments (Kurta, Formal Suit, Shirt, Sherwani, Pant)."
   },
   {
     id: "measurements",

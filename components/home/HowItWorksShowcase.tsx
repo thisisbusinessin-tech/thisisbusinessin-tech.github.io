@@ -134,6 +134,8 @@ export function HowItWorksShowcase({ steps }: HowItWorksShowcaseProps) {
   };
 
   const activeIndex = Math.min(steps.length - 1, Math.round(displayIndex));
+  const scrollHintOpacity = Math.max(0, Math.min(1, 1 - scrollProgress / 0.22));
+  const showScrollHint = activeIndex === 0 && scrollHintOpacity > 0.02;
 
   return (
     <div className="how-sequence">
@@ -185,6 +187,28 @@ export function HowItWorksShowcase({ steps }: HowItWorksShowcaseProps) {
               </div>
             </div>
           </div>
+        </div>
+        <div
+          className={`how-step-scroll-hint ${showScrollHint ? "is-visible" : ""}`}
+          aria-hidden={!showScrollHint}
+          style={{
+            opacity: scrollHintOpacity,
+            filter: scrollHintOpacity < 0.98 ? `blur(${((1 - scrollHintOpacity) * 8).toFixed(1)}px)` : "none",
+            transform: `translate3d(0, ${((1 - scrollHintOpacity) * -12).toFixed(1)}px, 0)`,
+          }}
+        >
+          <span className="how-step-scroll-hint-text">Scroll more</span>
+          <span className="how-step-scroll-hint-arrow" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M8 2.5v11M3.5 9.5 8 13.5l4.5-4"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
         </div>
       </div>
 

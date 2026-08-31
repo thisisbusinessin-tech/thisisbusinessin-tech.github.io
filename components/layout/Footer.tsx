@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/config/site";
-import { AppDownloadButton } from "@/components/ui/AppDownloadButton";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -9,24 +8,18 @@ export function Footer() {
     <footer className="site-footer bg-brand-900 text-neutral-300" role="contentinfo">
       <div className="site-footer-inner">
         <div className="container-site section-padding">
-          <div className="footer-cta mb-12 overflow-hidden p-6 text-white md:p-8">
-            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-              <div className="max-w-2xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/64">
-                  ApneTailor
-                </p>
-                <h2 className="mt-3 text-white">
-                  Avoid repeated market visits for one stitching order
-                </h2>
-                <p className="mt-4 max-w-xl text-white/76">
-                  Place your stitching order, share measurements, review tailor responses, and
-                  track progress from one clear flow.
-                </p>
-              </div>
-              <div className="flex items-center">
-                <AppDownloadButton className="shadow-[0_22px_48px_rgba(79,155,255,0.22)]" />
-              </div>
-            </div>
+          <div className="footer-download mb-12">
+            <a
+              href={
+                siteConfig.appDownload.url ??
+                "https://play.google.com/store/search?q=ApneTailor&c=apps"
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-download-link"
+            >
+              Download now!
+            </a>
           </div>
 
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 xl:grid-cols-5 xl:gap-8">

@@ -61,6 +61,11 @@
     background: var(--color-brand-900);
   }
 
+  html.lenis,
+  html.lenis-smooth {
+    scroll-behavior: auto;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -655,6 +660,39 @@
       0 0 0 1px rgba(168, 212, 255, 0.08);
   }
 
+  .footer-download {
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-download-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0.82rem 1.55rem;
+    border-radius: 999px;
+    background: #eef4fb;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    color: #031b37;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(3, 27, 55, 0.12);
+    transition:
+      transform 0.22s ease,
+      background-color 0.22s ease,
+      box-shadow 0.22s ease;
+  }
+
+  .footer-download-link:hover {
+    color: #031b37;
+    background: #f7fafd;
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px rgba(3, 27, 55, 0.16);
+  }
+
   .reveal {
     opacity: 0;
     transform: translate3d(0, 28px, 0);
@@ -1111,6 +1149,7 @@
 
   .how-phone-phase {
     width: 100%;
+    flex: 1 1 auto;
   }
 
   .how-phone-phase {
@@ -1124,6 +1163,7 @@
     min-height: 16rem;
     display: flex;
     align-items: center;
+    position: relative;
   }
 
   .how-step-text-stack {
@@ -1179,6 +1219,49 @@
     font-weight: 800;
     letter-spacing: -0.03em;
     color: var(--color-brand-800);
+  }
+
+  .how-step-scroll-hint {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: max(0.85rem, env(safe-area-inset-bottom));
+    z-index: 6;
+    width: max-content;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    color: #000000;
+    pointer-events: none;
+    will-change: opacity, filter, transform;
+  }
+
+  .how-step-scroll-hint.is-visible {
+    opacity: 1;
+  }
+
+  .how-step-scroll-hint-text {
+    font-size: 0.98rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  .how-step-scroll-hint-arrow {
+    display: block;
+    width: 0.95rem;
+    height: 0.95rem;
+    color: #000000;
+    animation: how-step-scroll-drift 1.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+
+  .how-step-scroll-hint-arrow svg {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
   .how-sequence-track {
@@ -1311,10 +1394,11 @@
 
   .trust-scene-title {
     position: absolute;
-    inset: 13% auto auto 2.2rem;
+    inset: 12% auto auto 2.2rem;
+    z-index: 0;
     max-width: 8ch;
-    color: rgba(255, 255, 255, 0.08);
-    font-size: clamp(3.2rem, 9vw, 8.4rem);
+    color: rgba(255, 255, 255, 0.1);
+    font-size: clamp(3.6rem, 10vw, 9rem);
     line-height: 0.88;
     letter-spacing: -0.08em;
     font-weight: 800;
@@ -1396,9 +1480,18 @@
 
   .trust-full-image {
     position: absolute;
-    inset: 0;
+    top: 0;
+    bottom: 0;
+    left: 12%;
+    right: 1.4rem;
+    z-index: 1;
     overflow: hidden;
     border-radius: inherit;
+  }
+
+  .trust-full-image-media {
+    object-fit: contain;
+    object-position: right center;
   }
 
 
@@ -1597,6 +1690,18 @@
     }
   }
 
+  @keyframes how-step-scroll-drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+      opacity: 0.45;
+    }
+    50% {
+      transform: translate3d(0, 0.34rem, 0);
+      opacity: 0.88;
+    }
+  }
+
   @media (hover: hover) and (pointer: fine) {
     .interactive-card:hover {
       transform: translateY(-6px);
@@ -1627,12 +1732,28 @@
     }
 
     .trust-stage {
-      min-height: 38rem;
+      min-height: 0;
+      aspect-ratio: 16 / 10;
     }
 
     .trust-scene-title {
-      inset: 1.5rem auto auto 1.2rem;
-      max-width: 6ch;
+      inset: 1.05rem auto auto 1.05rem;
+      max-width: 8ch;
+      font-size: clamp(2.8rem, 12vw, 4.6rem);
+      color: rgba(255, 255, 255, 0.12);
+    }
+
+    .trust-full-image {
+      inset: 0;
+    }
+
+    .trust-full-image-media {
+      object-position: right center;
+    }
+
+    .trust-scene.is-landscape .trust-full-image-media {
+      object-fit: contain;
+      object-position: right center;
     }
 
     .trust-figure {
@@ -1684,6 +1805,10 @@
       min-height: 8rem;
       justify-content: flex-start;
       text-align: left;
+    }
+
+    .how-step-scroll-hint {
+      bottom: max(0.7rem, env(safe-area-inset-bottom));
     }
 
     .how-scroll-step {
@@ -1783,6 +1908,12 @@
       animation: none;
       opacity: 1;
       transform: none;
+    }
+
+    .how-step-scroll-hint,
+    .how-step-scroll-hint-arrow {
+      animation: none;
+      transition: none;
     }
 
     .how-phone-phase,
