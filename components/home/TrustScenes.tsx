@@ -7,12 +7,12 @@ const trustScenes = [
     image: "/images/trust/verified-tailors-placeholder.webp"
   },
   {
-    title: "Track\nDeliveries",
+    title: "Track\nOrders",
     alt: "Track Deliveries",
     image: "/images/trust/tracked-deliveries-placeholder.webp"
   },
   {
-    title: "Secure\nPayments",
+    title: "Secure\n& Safe",
     alt: "Secure Payments",
     image: "/images/trust/order-within-10-minutes-placeholder.webp"
   },
