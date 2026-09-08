@@ -12,14 +12,14 @@ export const siteConfig = {
     { name: "Yugank Trehan", role: "Co-founder" }
   ],
   appDownload: {
-    url: null as string | null,
-    status: "placeholder" as "placeholder" | "live",
+    url: "https://play.google.com/store/apps/details?id=com.apnetailor.app" as string | null,
+    status: "live" as "placeholder" | "live",
     label: "Download the ApneTailor App",
     placeholderMessage: "The app download link."
   },
   tailorAppDownload: {
-    url: null as string | null,
-    status: "placeholder" as "placeholder" | "live",
+    url: "https://play.google.com/store/apps/details?id=com.apnetailor.tailorapp" as string | null,
+    status: "live" as "placeholder" | "live",
     label: "Download the ApneTailor Tailor App",
     placeholderMessage: "The tailor app download link."
   },
