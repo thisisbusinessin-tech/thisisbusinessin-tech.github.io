@@ -151,13 +151,82 @@ export default function DataCompliancePage() {
       </p>
 
       <h2>Your Rights and Controls</h2>
-      <p>Subject to applicable laws, users and tailors may:</p>
+      <p>
+        Subject to applicable laws, including the Digital Personal Data Protection Act, 2023
+        (India), where applicable, users and tailors may exercise the following rights and
+        controls:
+      </p>
+
+      <h3>Right to access your information</h3>
+      <p>
+        You may request to know what personal information ApneTailor holds about you. Customers
+        can review account, profile, and order information in the ApneTailor User App. Tailors
+        can review account and profile information in the ApneTailor Tailor App.
+      </p>
+      <p>
+        If you ask, &quot;What personal information do you have about me?&quot;, contact{" "}
+        <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a> from your
+        registered email address where possible. Include your registered name, phone number, and
+        whether you use the customer app or tailor app. We will verify your identity and provide
+        a reasonable summary of personal information we hold, subject to applicable law,
+        security, fraud prevention, and operational requirements.
+      </p>
+      <p>
+        ApneTailor does not currently provide an automated data-export or &quot;Download My
+        Data&quot; feature. Access requests may be handled through support while we assess
+        future self-service options.
+      </p>
+
+      <h3>Right to correct your information</h3>
+      <p>
+        You are responsible for keeping your information accurate. Customers can update
+        eligible profile fields directly in the ApneTailor User App, including:
+      </p>
       <ul>
-        <li>Access account information</li>
-        <li>Update eligible profile information</li>
-        <li>Request account deletion</li>
-        <li>Contact support regarding data concerns</li>
+        <li>Name</li>
+        <li>Phone number</li>
+        <li>Email address</li>
+        <li>Saved pickup and delivery addresses</li>
+        <li>Profile photo, where supported</li>
       </ul>
+      <p>
+        Tailors can update eligible profile fields in the ApneTailor Tailor App, including
+        name, phone number, email address, addresses, and profile photo, where supported. If a
+        field cannot be changed in the app, or a correction requires manual review, tailors
+        may request an update by emailing{" "}
+        <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a>. We may
+        require verification before processing certain changes.
+      </p>
+
+      <h3>Other controls</h3>
+      <ul>
+        <li>Request account deletion, as described in our Account Deletion Policy</li>
+        <li>Contact support regarding privacy, security, or data-handling concerns</li>
+        <li>Raise grievances relating to data handling through our support channels</li>
+      </ul>
+
+      <h2>Data Breach Response</h2>
+      <p>
+        ApneTailor maintains internal processes for detecting, containing, investigating, and
+        responding to suspected or confirmed incidents involving unauthorized access to, or
+        disclosure of, personal information.
+      </p>
+      <p>Our general approach includes:</p>
+      <ul>
+        <li>Identifying and containing the incident</li>
+        <li>Investigating scope, cause, and affected information</li>
+        <li>Taking reasonable steps to reduce harm and prevent recurrence</li>
+        <li>Preserving records needed for investigation, remediation, and legal compliance</li>
+        <li>
+          Notifying the appropriate authority and affected individuals where required under
+          applicable law, including the Digital Personal Data Protection Act, 2023 (India)
+        </li>
+      </ul>
+      <p>
+        If you believe your ApneTailor account or personal information may have been
+        compromised, contact{" "}
+        <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a> promptly.
+      </p>
 
       <h2>Compliance Commitment</h2>
       <p>

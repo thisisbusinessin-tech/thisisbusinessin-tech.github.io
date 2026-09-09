@@ -94,6 +94,19 @@ export default function SecurityPage() {
           </div>
 
           <div>
+            <h2>Data breach response</h2>
+            <p>
+              ApneTailor maintains internal processes to detect, contain, investigate, and
+              respond to suspected or confirmed unauthorized access to personal information.
+              Where required under applicable law, including the Digital Personal Data
+              Protection Act, 2023 (India), we will notify the appropriate authority and
+              affected individuals. See our{" "}
+              <Link href="/privacy-policy/">Privacy Policy</Link> and{" "}
+              <Link href="/data-compliance/">Data Compliance</Link> statement for more detail.
+            </p>
+          </div>
+
+          <div>
             <h2>Related policies</h2>
             <ul>
               <li>

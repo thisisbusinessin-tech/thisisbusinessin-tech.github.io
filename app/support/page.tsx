@@ -40,6 +40,23 @@ export default function SupportPage() {
           </div>
 
           <div className="card">
+            <h2 className="text-xl mb-3">Access or correct your information</h2>
+            <p className="text-neutral-600">
+              Customers can update name, phone number, email, addresses, and profile photo in
+              the ApneTailor User App where supported. Tailors can update eligible profile
+              fields in the Tailor App; changes that need manual review can be requested by
+              email.
+            </p>
+            <p className="text-neutral-600 mt-3">
+              To ask what personal information we hold about you, email{" "}
+              <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a> from
+              your registered email address where possible. Include your name, phone number, and
+              whether you use the customer or tailor app. See our{" "}
+              <Link href="/data-compliance/">Data Compliance</Link> page for the full process.
+            </p>
+          </div>
+
+          <div className="card">
             <h2 className="text-xl mb-3">Refunds and cancellations</h2>
             <p className="text-neutral-600">
               Refund and cancellation terms depend on the circumstances. See our{" "}

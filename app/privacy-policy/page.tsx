@@ -117,7 +117,63 @@ export default function PrivacyPolicyPage() {
         reasonably necessary.
       </p>
 
-      <h2>9. Account Deletion</h2>
+      <h2>9. Your Data Rights</h2>
+      <p>
+        Under applicable data protection laws, including the Digital Personal Data Protection
+        Act, 2023 (India), where applicable, you may have rights regarding your personal
+        information. ApneTailor supports the following:
+      </p>
+
+      <h3>Access to your information</h3>
+      <p>
+        You may ask what personal information ApneTailor holds about you. Customers can review
+        much of their account and order information directly in the ApneTailor User App. If you
+        want a summary of personal information we hold, or information not visible in the app,
+        contact us at{" "}
+        <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a> from your
+        registered email address where possible. We will verify your identity and respond within
+        a reasonable time, subject to applicable law and legitimate operational or security
+        requirements.
+      </p>
+      <p>
+        ApneTailor does not currently offer an automated &quot;Download My Data&quot; feature.
+        Access requests may be handled through support while we evaluate future self-service
+        options.
+      </p>
+
+      <h3>Correction of your information</h3>
+      <p>
+        You should keep your account information accurate and up to date. Customers using the
+        ApneTailor User App can update eligible profile fields in the app, including name,
+        phone number, email address, saved addresses, and profile photo, where supported.
+      </p>
+      <p>
+        Tailors using the ApneTailor Tailor App can update eligible profile fields in the app.
+        Where a field cannot be changed in the app, or a correction requires manual review,
+        tailors may contact{" "}
+        <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a> to request
+        an update. We may ask for verification before making certain changes.
+      </p>
+      <p>
+        For more detail on how we handle data rights requests, see our{" "}
+        <Link href="/data-compliance/">Data Compliance</Link> statement.
+      </p>
+
+      <h2>10. Data Breach Response</h2>
+      <p>
+        ApneTailor maintains internal processes to help detect, contain, investigate, and
+        respond to suspected or confirmed unauthorized access to, or disclosure of, personal
+        information. If we become aware of a personal data breach that is likely to affect
+        your rights or interests, we will take reasonable steps to address it, including
+        mitigation, investigation, and corrective action.
+      </p>
+      <p>
+        Where required under applicable law, including the Digital Personal Data Protection
+        Act, 2023 (India), we will notify the appropriate authority and affected individuals
+        within the timeframes and manner required by law.
+      </p>
+
+      <h2>11. Account Deletion</h2>
       <p>
         Users and tailors may request account deletion in the relevant ApneTailor app, or by
         emailing{" "}
@@ -133,20 +189,20 @@ export default function PrivacyPolicyPage() {
         <Link href="/delete-accounts/">Account Deletion</Link> page for the full process.
       </p>
 
-      <h2>10. Children&apos;s Privacy</h2>
+      <h2>12. Children&apos;s Privacy</h2>
       <p>
         Our services are not directed towards people under 18 years of age. We do not knowingly
         collect personal information from children.
       </p>
 
-      <h2>11. Third-Party Services</h2>
+      <h2>13. Third-Party Services</h2>
       <p>
         The application may use third-party services such as analytics, cloud hosting,
         authentication providers, notification providers, and payment or logistics services.
         These services may process information according to their own privacy policies.
       </p>
 
-      <h2>12. Changes to this Privacy Policy</h2>
+      <h2>14. Changes to this Privacy Policy</h2>
       <p>
         We may update this Privacy Policy from time to time. Changes become effective when
         published on this page. Users are encouraged to review this page periodically.
@@ -154,7 +210,7 @@ export default function PrivacyPolicyPage() {
 
       <PlatformPoliciesNotice currentPolicy="privacy-policy" />
 
-      <h2>13. Contact Us</h2>
+      <h2>15. Contact Us</h2>
       <p>
         If you have questions regarding this Privacy Policy or how we handle personal
         information, please contact:
