@@ -1,5 +1,6 @@
 import { createMetadata } from "@/lib/seo/metadata";
 import { LegalPageLayout } from "@/components/content/LegalPageLayout";
+import { PlatformPoliciesNotice } from "@/components/content/PlatformPoliciesNotice";
 import { siteConfig } from "@/lib/config/site";
 
 export const metadata = createMetadata({
@@ -11,7 +12,7 @@ export const metadata = createMetadata({
 
 export default function DataCompliancePage() {
   return (
-    <LegalPageLayout title="Data Compliance" lastUpdated="June 2026">
+    <LegalPageLayout title="Data Compliance" lastUpdated="September 2026">
       <p>
         This Data Compliance Statement explains how ApneTailor collects, uses, stores, protects,
         shares, and retains information across the ApneTailor User (Customer) App, ApneTailor
@@ -47,8 +48,8 @@ export default function DataCompliancePage() {
         <li>Fabric Images</li>
         <li>Device Information</li>
         <li>Push Notification Tokens</li>
-        <li>Communication Records</li>
-        <li>Tailor Verification Information</li>
+        <li>Communication Records, including in-app chats</li>
+        <li>Tailor Verification Information, which may include a live selfie</li>
         <li>Earnings and Payout Information (Tailors)</li>
       </ul>
 
@@ -63,6 +64,7 @@ export default function DataCompliancePage() {
         <li>Pickup and delivery coordination</li>
         <li>Customer support</li>
         <li>Fraud prevention and security monitoring</li>
+        <li>Review of in-app chats for operations, support, and quality where reasonably necessary</li>
         <li>Payment processing and reconciliation</li>
         <li>Platform improvement and performance monitoring</li>
         <li>Regulatory and legal compliance</li>
@@ -125,7 +127,17 @@ export default function DataCompliancePage() {
         <li>Meet accounting obligations</li>
         <li>Comply with legal requirements</li>
       </ul>
-      <p>Account deletion requests are processed according to our Account Deletion Policy.</p>
+      <p>
+        In-app chats associated with an order are normally deleted within 7 to 14 days after
+        that order is completed, unless a longer period is reasonably required for support,
+        disputes, security, or legal compliance. Order, payment, and logistics records may be
+        retained for longer after completion where reasonably necessary.
+      </p>
+      <p>
+        Account deletion requests are processed according to our Account Deletion Policy.
+        Accounts and related personal data are deleted after 30 days if no security, fraud,
+        abuse, dispute, or legal-hold issues are identified.
+      </p>
 
       <h2>Account Deletion and Anonymization</h2>
       <p>
@@ -153,6 +165,8 @@ export default function DataCompliancePage() {
         with applicable privacy, consumer protection, security, and data protection
         requirements relevant to the operation of the platform.
       </p>
+
+      <PlatformPoliciesNotice currentPolicy="data-compliance" />
 
       <h2>Contact Us</h2>
       <p>For questions regarding privacy, security, compliance, or data handling, please contact:</p>

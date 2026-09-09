@@ -70,7 +70,7 @@ const rawFaqs = [
     topic: "Privacy",
     question: "How do I delete my account?",
     answer:
-      "Open the ApneTailor app, go to Profile → Delete Account, and confirm your deletion request. Your account then enters a 30-day retention period, after which your personal information is permanently deleted or anonymized. See our Account Deletion Policy for more information."
+      "Open the ApneTailor app, go to Profile → Delete Account, and confirm your deletion request. You can also email support@apnetailor.com to request deletion. The account and related personal data are deleted after 30 days if no security, fraud, abuse, dispute, or legal-hold issues are found. See our Account Deletion Policy for more information."
   },
   {
     id: "verified-tailors",

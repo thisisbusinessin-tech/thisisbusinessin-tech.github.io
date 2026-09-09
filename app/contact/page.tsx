@@ -40,6 +40,23 @@ export default function ContactPage() {
           </div>
 
           <div className="card">
+            <h2 className="text-xl mb-3">Complaints and grievances</h2>
+            <p className="text-neutral-600">
+              For a formal complaint, email{" "}
+              <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a>{" "}
+              or use in-app support. Include your order reference where applicable. See our{" "}
+              <a href="/support/" className="font-medium">
+                Support
+              </a>{" "}
+              page and{" "}
+              <a href="/terms/" className="font-medium">
+                Terms of Service
+              </a>{" "}
+              for the grievance mechanism.
+            </p>
+          </div>
+
+          <div className="card">
             <h2 className="text-xl mb-3">Media inquiries</h2>
             <p className="text-neutral-600">
               For press and media requests, visit our{" "}

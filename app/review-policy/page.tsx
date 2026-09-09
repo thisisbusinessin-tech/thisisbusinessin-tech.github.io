@@ -1,4 +1,5 @@
 import { createMetadata } from "@/lib/seo/metadata";
+import { LegalPageLayout } from "@/components/content/LegalPageLayout";
 import { siteConfig } from "@/lib/config/site";
 
 export const metadata = createMetadata({
@@ -9,9 +10,7 @@ export const metadata = createMetadata({
 
 export default function ReviewPolicyPage() {
   return (
-    <section className="section-padding">
-      <div className="container-narrow prose-content text-neutral-700">
-        <h1>Review Policy</h1>
+    <LegalPageLayout title="Review Policy" lastUpdated="September 2026">
         <h2>Customer reviews in the app</h2>
         <p>
           ApneTailor&apos;s mobile application includes a rating and review system tied to
@@ -36,7 +35,6 @@ export default function ReviewPolicyPage() {
           To report concerns about reviews or content, contact{" "}
           <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a>.
         </p>
-      </div>
-    </section>
+    </LegalPageLayout>
   );
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createMetadata } from "@/lib/seo/metadata";
+import { LegalPageLayout } from "@/components/content/LegalPageLayout";
 import { siteConfig } from "@/lib/config/site";
 
 export const metadata = createMetadata({
@@ -11,11 +12,7 @@ export const metadata = createMetadata({
 
 export default function AccessibilityStatementPage() {
   return (
-    <section className="section-padding">
-      <div className="container-narrow prose-content text-neutral-700">
-        <h1>Accessibility Statement</h1>
-        <p className="text-sm text-neutral-500 -mt-2 mb-8">Last Updated: July 2026</p>
-
+    <LegalPageLayout title="Accessibility Statement" lastUpdated="September 2026">
         <p>
           ApneTailor is committed to making its website accessible to people with disabilities.
           We aim to conform to WCAG 2.2 Level AA where reasonably applicable.
@@ -65,7 +62,6 @@ export default function AccessibilityStatementPage() {
             <Link href="/support/">Support</Link>
           </li>
         </ul>
-      </div>
-    </section>
+    </LegalPageLayout>
   );
 }

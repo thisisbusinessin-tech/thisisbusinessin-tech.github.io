@@ -49,6 +49,19 @@ export default function SupportPage() {
           </div>
 
           <div className="card">
+            <h2 className="text-xl mb-3">Grievance and complaints</h2>
+            <p className="text-neutral-600">
+              If you have a complaint about an order, payment, pickup or delivery, your
+              account, or the platform, raise it through in-app support or email{" "}
+              <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a>.
+              Include your contact details, order reference where applicable, and a clear
+              description of the issue. We will make reasonable efforts to acknowledge and
+              address grievances in a timely manner. This is also described in our{" "}
+              <Link href="/terms/">Terms of Service</Link>.
+            </p>
+          </div>
+
+          <div className="card">
             <h2 className="text-xl mb-3">General inquiries</h2>
             <p className="text-neutral-600">
               Email us at{" "}

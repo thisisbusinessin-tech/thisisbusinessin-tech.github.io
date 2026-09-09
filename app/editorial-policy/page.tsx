@@ -1,4 +1,5 @@
 import { createMetadata } from "@/lib/seo/metadata";
+import { LegalPageLayout } from "@/components/content/LegalPageLayout";
 import { siteConfig } from "@/lib/config/site";
 
 export const metadata = createMetadata({
@@ -9,9 +10,7 @@ export const metadata = createMetadata({
 
 export default function EditorialPolicyPage() {
   return (
-    <section className="section-padding">
-      <div className="container-narrow prose-content text-neutral-700">
-        <h1>Editorial Policy</h1>
+    <LegalPageLayout title="Editorial Policy" lastUpdated="September 2026">
         <p>
           This policy describes how ApneTailor creates, maintains, and corrects educational
           content published on apnetailor.com.
@@ -44,7 +43,6 @@ export default function EditorialPolicyPage() {
           We review correction requests and update content with accurate information and
           meaningful update dates.
         </p>
-      </div>
-    </section>
+    </LegalPageLayout>
   );
 }
